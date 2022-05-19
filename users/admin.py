@@ -1,12 +1,13 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
 
-from .forms import *
+from .forms import EmployeeChangeForm, EmployeeCreationForm
 
 Employee = get_user_model()
 
-class RUserAdmin(UserAdmin):
+class EmployeeAdmin(UserAdmin):
     add_form = EmployeeCreationForm
     form = EmployeeChangeForm
 
@@ -35,7 +36,5 @@ class RUserAdmin(UserAdmin):
                      'permission_service', 'permission_sales',)}),
     )
 
-admin.site.register(Employee, RUserAdmin)
-
-from django.contrib.auth.models import Group
+admin.site.register(Employee, EmployeeAdmin)
 admin.site.unregister(Group)
