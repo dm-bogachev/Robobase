@@ -21,7 +21,7 @@ class Employee(AbstractUser):
 
     last_name = models.CharField(max_length=255,
                                  verbose_name='Фамилия',
-                                 db_index=True)
+                                 db_index=True,)
 
     mid_name = models.CharField(max_length=255,
                                 null=True,
