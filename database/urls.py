@@ -10,7 +10,7 @@ class TestView(TemplateView):
 
 
 urlpatterns = [
-    path('', TestView.as_view(), name='home'),
+    path('', RedirectView.as_view(url='robot/list'),),
     path('robot/list', RobotList.as_view(), name='robot_list'),
     path('robot/create', RobotCreate.as_view(), name='robot_create'),
     # Location
