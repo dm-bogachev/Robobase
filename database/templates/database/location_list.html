@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Список локаций{% endblock title %}
+{% block content %}
+<div class="container">
+    <h1>Список локаций | <a href="{% url 'location_create' %}">Добавить</a></h1>
+    <table id="info-table" class="table table-robot-list table-sort">
+        <thead class="thead-default">
+            <tr>
+                <th>#id</th>
+                <th>Название</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for object in object_list %}
+            <tr>
+                <th style="width: 0; white-space: nowrap;">{{ object.pk }}</th>
+                <th>{{ object }}</a></th>
+                <th style="width: 0; white-space: nowrap;">
+                    <a href="{% url 'location_update' object.pk %}">Редактировать</a> |
+                    <a href="{% url 'location_delete' object.pk %}">Удалить</a>
+                </th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

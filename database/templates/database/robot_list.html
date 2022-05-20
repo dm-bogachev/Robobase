@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Список роботов{% endblock title %}
+{% block content %}
+<div class="container-fluid">
+    <h1>Список роботов | <a href="{% url 'robot_create' %}">Добавить</a></h1>
+    <table id="info-table" class="table table-robot-list table-sort">
+        <thead class="thead-default">
+            <tr>
+                <th>Имя</th>
+                <th>Серийный номер робота</th>
+                <th>Модель</th>
+                <th>Контроллер</th>
+                <th>Клиент</th>
+                <th>Интегратор</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for robot in object_list %}
+            <tr>
+                <th><a href="#">{{ robot.name }}</a></th>
+                <th>{{ robot.arm_sn }}</th>
+                <th>{{ robot.arm }}</th>
+                <th>{{ robot.controller }}</th>
+                <th>{{ robot.client }}</th>
+                <th>
+                    {% if robot.integrator != None %}
+                    {{ robot.integrator }}
+                    {% endif %}
+                </th>
+                <th>
+                    <a href="#">Редактировать</a> |
+                    <a href="#">Удалить</a>
+                </th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

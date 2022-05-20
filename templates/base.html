@@ -23,14 +23,26 @@
                     {% if user.is_authenticated %}
                     {% if user.permission_administration %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'admin:index' %}">Панель администратора</a>
+                        <a class="nav-link" href="{% url 'admin:index' %}">Администратор</a>
                     </li>
                     {% endif %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Роботы</a>
+                        <a class="nav-link" href="{% url 'robot_list' %}">Роботы</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">И прочие звери</a>
+                        <a class="nav-link" href="{% url 'client_list' %}">Клиенты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'integrator_list' %}">Интеграторы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'location_list' %}">Локации</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'robotarm_list' %}">Модели</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'robotcontroller_list' %}">Контроллеры</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -56,6 +68,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
     </script>
+
 </body>
 
 </html>
