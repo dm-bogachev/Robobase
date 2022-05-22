@@ -13,8 +13,8 @@ urlpatterns = [
     path('', RedirectView.as_view(url='robot/list'), name='home'),
     #path('', TestView.as_view(), name='home'),
     # Robot
-    path('robot/list', RobotList2.as_view(), name='robot_list'),
-    path('robot/create', RobotCreate2.as_view(), name='robot_create'),
+    path('robot/list', RobotList.as_view(), name='robot_list'),
+    path('robot/create', RobotCreate.as_view(), name='robot_create'),
     path('robot/read/<int:pk>', RobotRead.as_view(), name='robot_read'),
     path('robot/update/<int:pk>', RobotUpdate.as_view(), name='robot_update'),
     path('robot/delete/<int:pk>', RobotDelete.as_view(), name='robot_delete'),

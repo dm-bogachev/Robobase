@@ -22,7 +22,7 @@
         <tbody>
             {% for object in object_list %}
             <tr>
-                <td><a href="#">{{ object.name }}</a></td>
+                <td><a href="{% url 'robot_read' object.pk %}">{{ object.name }}</a></td>
                 <td>{{ object.arm_sn }}</td>
                 <td>{{ object.arm }}</td>
                 <td>{{ object.controller }}</td>

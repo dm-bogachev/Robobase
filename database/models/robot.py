@@ -79,6 +79,7 @@ class Robot(models.Model):
 
 
 class RobotCreate(LoginRequiredMixin, CreateView):
+    login_url = 'login'
     model = Robot
     fields = '__all__'
 
@@ -122,33 +123,8 @@ class RobotDelete(LoginRequiredMixin, DeleteView):
 
 
 class RobotList(LoginRequiredMixin, ListView):
-    model = Robot
-
-    @classonlymethod
-    def as_view(cls, **initkwargs):
-        i = 8
-        return super().as_view(cls, **initkwargs)
-
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            return self.handle_no_permission()
-        return super().dispatch(request, *args, **kwargs)
-
-    def model_name(self):
-        return self.model._meta.verbose_name
-
-
-class RobotList2(LoginRequiredMixin, ListView):
     login_url = 'login'
     model = Robot
 
     def model_name(self):
         return self.model._meta.verbose_name
-
-class RobotCreate2(LoginRequiredMixin, CreateView):
-    login_url = 'login'
-    model = Robot
-    fields = '__all__'
-
-    def get_success_url(self):
-        return reverse_lazy('robot_list')

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ object }}{% endblock title %}
+{% block content %}
+<div class="container">
+
+    <h1 class="pt-1">Информация о роботе:</h1>
+
+    <h5>Имя робота: {{ object.name }}</h5>
+    <h5>Серийный номер: {{ object.arm_sn }}</h5>
+    <div style="word-wrap: normal;">
+        <h5>Описание:<br /></h5>
+        <div class="text-muted">{{ object.description }}</div>
+    </div>
+
+    <h5>Дата поставки: {{ object.shipping_date }}</h5>
+    <h5>Дата создания объекта в базе: {{ object.creation_date }}</h5>
+    <h5>Контроллер: {{ object.controller }}</h5>
+    <h5>Модель: {{ object.arm }}</h5>
+    <h5>Клиент: {{ object.client }}</h5>
+    <h5>Интегратор: {{ object.integrator }}</h5>
+</div>
+{% endblock content %}
