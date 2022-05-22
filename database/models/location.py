@@ -1,8 +1,10 @@
 from typing import ItemsView
+
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import models
-from simple_history.models import HistoricalRecords
 from django.urls import reverse_lazy
 from django.views.generic import *
+from simple_history.models import HistoricalRecords
 
 
 class Location(models.Model):
@@ -24,7 +26,8 @@ class Location(models.Model):
         verbose_name = 'Локация'
 
 
-class LocationCreate(CreateView):
+class LocationCreate(LoginRequiredMixin, CreateView):
+    login_url = 'login'
     model = Location
     template_name = 'database/base_cu_form.html'
     fields = '__all__'
@@ -36,14 +39,16 @@ class LocationCreate(CreateView):
         return self.model._meta.verbose_name
 
 
-class LocationRead(DetailView):
+class LocationRead(LoginRequiredMixin, DetailView):
+    login_url = 'login'
     model = Location
 
     def model_name(self):
         return self.model._meta.verbose_name
 
 
-class LocationUpdate(UpdateView):
+class LocationUpdate(LoginRequiredMixin, UpdateView):
+    login_url = 'login'
     model = Location
     template_name = 'database/base_cu_form.html'
     fields = '__all__'
@@ -55,7 +60,8 @@ class LocationUpdate(UpdateView):
         return self.model._meta.verbose_name
 
 
-class LocationDelete(DeleteView):
+class LocationDelete(LoginRequiredMixin, DeleteView):
+    login_url = 'login'
     model = Location
     template_name = 'database/base_d_form.html'
 
@@ -66,7 +72,8 @@ class LocationDelete(DeleteView):
         return self.model._meta.verbose_name
 
 
-class LocationList(ListView):
+class LocationList(LoginRequiredMixin, ListView):
+    login_url = 'login'
     model = Location
 
     def model_name(self):

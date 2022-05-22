@@ -1,9 +1,11 @@
+import os
+
 from django.conf import settings
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import models
-from simple_history.models import HistoricalRecords
 from django.urls import reverse_lazy
 from django.views.generic import *
-import os
+from simple_history.models import HistoricalRecords
 
 
 class RobotArm(models.Model):
@@ -39,7 +41,8 @@ class RobotArm(models.Model):
         verbose_name = 'Модель'
 
 
-class RobotArmCreate(CreateView):
+class RobotArmCreate(LoginRequiredMixin, CreateView):
+    login_url = 'login'
     model = RobotArm
     template_name = 'database/base_cu_form.html'
     fields = '__all__'
@@ -69,14 +72,16 @@ class RobotArmCreate(CreateView):
         return super(RobotArmCreate, self).form_valid(form)
 
 
-class RobotArmRead(DetailView):
+class RobotArmRead(LoginRequiredMixin, DetailView):
+    login_url = 'login'
     model = RobotArm
 
     def model_name(self):
         return self.model._meta.verbose_name
 
 
-class RobotArmUpdate(UpdateView):
+class RobotArmUpdate(LoginRequiredMixin, UpdateView):
+    login_url = 'login'
     model = RobotArm
     template_name = 'database/base_cu_form.html'
     fields = '__all__'
@@ -106,7 +111,8 @@ class RobotArmUpdate(UpdateView):
         return super(RobotArmUpdate, self).form_valid(form)
 
 
-class RobotArmDelete(DeleteView):
+class RobotArmDelete(LoginRequiredMixin, DeleteView):
+    login_url = 'login'
     model = RobotArm
     template_name = 'database/base_d_form.html'
 
@@ -117,7 +123,8 @@ class RobotArmDelete(DeleteView):
         return self.model._meta.verbose_name
 
 
-class RobotArmList(ListView):
+class RobotArmList(LoginRequiredMixin, ListView):
+    login_url = 'login'
     model = RobotArm
 
     def model_name(self):

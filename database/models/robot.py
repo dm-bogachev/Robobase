@@ -1,8 +1,11 @@
+from django.utils.decorators import classonlymethod
 from typing import ItemsView
+
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import models
-from simple_history.models import HistoricalRecords
 from django.urls import reverse_lazy
 from django.views.generic import *
+from simple_history.models import HistoricalRecords
 
 
 class Robot(models.Model):
@@ -75,13 +78,75 @@ class Robot(models.Model):
         verbose_name = 'Робот'
 
 
-class RobotDetail(DetailView):
+class RobotCreate(LoginRequiredMixin, CreateView):
+    model = Robot
+    fields = '__all__'
+
+    def get_success_url(self):
+        return reverse_lazy('robot_list')
+
+
+class RobotRead(LoginRequiredMixin, DetailView):
+    login_url = 'login'
     model = Robot
 
-class RobotList(ListView):
+
+class RobotUpdate(LoginRequiredMixin, UpdateView):
+    login_url = 'login'
+    model = Robot
+    template_name = 'database/base_cu_form.html'
+    fields = '__all__'
+
+    def get_success_url(self):
+        return reverse_lazy('robot_list')
+
+    def model_name(self):
+        return self.model._meta.verbose_name
+
+
+class RobotDelete(LoginRequiredMixin, DeleteView):
+    login_url = 'login'
+    model = Robot
+    template_name = 'database/base_d_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        pass
+        i = 0
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse_lazy('robot_list')
+
+    def model_name(self):
+        return self.model._meta.verbose_name
+
+
+class RobotList(LoginRequiredMixin, ListView):
     model = Robot
 
-class RobotCreate(CreateView):
+    @classonlymethod
+    def as_view(cls, **initkwargs):
+        i = 8
+        return super().as_view(cls, **initkwargs)
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)
+
+    def model_name(self):
+        return self.model._meta.verbose_name
+
+
+class RobotList2(LoginRequiredMixin, ListView):
+    login_url = 'login'
+    model = Robot
+
+    def model_name(self):
+        return self.model._meta.verbose_name
+
+class RobotCreate2(LoginRequiredMixin, CreateView):
+    login_url = 'login'
     model = Robot
     fields = '__all__'
 

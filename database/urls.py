@@ -10,9 +10,14 @@ class TestView(TemplateView):
 
 
 urlpatterns = [
-    path('', RedirectView.as_view(url='robot/list'),),
-    path('robot/list', RobotList.as_view(), name='robot_list'),
-    path('robot/create', RobotCreate.as_view(), name='robot_create'),
+    path('', RedirectView.as_view(url='robot/list'), name='home'),
+    #path('', TestView.as_view(), name='home'),
+    # Robot
+    path('robot/list', RobotList2.as_view(), name='robot_list'),
+    path('robot/create', RobotCreate2.as_view(), name='robot_create'),
+    path('robot/read/<int:pk>', RobotRead.as_view(), name='robot_read'),
+    path('robot/update/<int:pk>', RobotUpdate.as_view(), name='robot_update'),
+    path('robot/delete/<int:pk>', RobotDelete.as_view(), name='robot_delete'),
     # Location
     path('location/create', LocationCreate.as_view(), name='location_create'),
     path('location/read/<int:pk>', LocationRead.as_view(), name='location_read'),
@@ -24,10 +29,8 @@ urlpatterns = [
     # Client
     path('client/create', ClientCreate.as_view(), name='client_create'),
     path('client/read/<int:pk>', ClientRead.as_view(), name='client_read'),
-    path('client/update/<int:pk>',
-         ClientUpdate.as_view(), name='client_update'),
-    path('client/delete/<int:pk>',
-         ClientDelete.as_view(), name='client_delete'),
+    path('client/update/<int:pk>', ClientUpdate.as_view(), name='client_update'),
+    path('client/delete/<int:pk>', ClientDelete.as_view(), name='client_delete'),
     path('client/list', ClientList.as_view(), name='client_list'),
     # Integrator
     path('integrator/create', IntegratorCreate.as_view(), name='integrator_create'),
@@ -40,8 +43,7 @@ urlpatterns = [
     path('integrator/list', IntegratorList.as_view(), name='integrator_list'),
     # RobotArm
     path('robotarm/create', RobotArmCreate.as_view(), name='robotarm_create'),
-    path('robotarm/read/<int:pk>',
-         RobotArmRead.as_view(), name='robotarm_read'),
+    path('robotarm/read/<int:pk>', RobotArmRead.as_view(), name='robotarm_read'),
     path('robotarm/update/<int:pk>',
          RobotArmUpdate.as_view(), name='robotarm_update'),
     path('robotarm/delete/<int:pk>',

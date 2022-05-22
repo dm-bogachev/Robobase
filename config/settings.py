@@ -148,8 +148,8 @@ DATE_FORMAT = "d.m.Y"
 TIME_ZONE = 'Europe/Moscow'
 DATE_INPUT_FORMATS = ('%d.%m.%Y',)
 
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'robot_list'
+LOGOUT_REDIRECT_URL = 'robot_list'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'

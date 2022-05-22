@@ -1,9 +1,11 @@
+import os
+
 from django.conf import settings
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import models
-from simple_history.models import HistoricalRecords
 from django.urls import reverse_lazy
 from django.views.generic import *
-import os
+from simple_history.models import HistoricalRecords
 
 
 class RobotController(models.Model):
@@ -38,7 +40,8 @@ class RobotController(models.Model):
         verbose_name = 'Контроллер'
 
 
-class RobotControllerCreate(CreateView):
+class RobotControllerCreate(LoginRequiredMixin, CreateView):
+    login_url = 'login'
     model = RobotController
     template_name = 'database/base_cu_form.html'
     fields = '__all__'
@@ -58,7 +61,8 @@ class RobotControllerCreate(CreateView):
     def form_valid(self, form):
 
         if self.image:
-            upload_to = form.instance.image.field.upload_to(form.instance, self.image.name)
+            upload_to = form.instance.image.field.upload_to(
+                form.instance, self.image.name)
             save_folder = settings.MEDIA_ROOT + upload_to
             with open((save_folder), 'wb+') as f:
                 for chunk in self.image.chunks():
@@ -66,14 +70,17 @@ class RobotControllerCreate(CreateView):
             form.instance.image = upload_to
         return super(RobotControllerCreate, self).form_valid(form)
 
-class RobotControllerRead(DetailView):
+
+class RobotControllerRead(LoginRequiredMixin, DetailView):
+    login_url = 'login'
     model = RobotController
 
     def model_name(self):
         return self.model._meta.verbose_name
 
 
-class RobotControllerUpdate(UpdateView):
+class RobotControllerUpdate(LoginRequiredMixin, UpdateView):
+    login_url = 'login'
     model = RobotController
     template_name = 'database/base_cu_form.html'
     fields = '__all__'
@@ -93,7 +100,8 @@ class RobotControllerUpdate(UpdateView):
     def form_valid(self, form):
 
         if self.image:
-            upload_to = form.instance.image.field.upload_to(form.instance, self.image.name)
+            upload_to = form.instance.image.field.upload_to(
+                form.instance, self.image.name)
             save_folder = settings.MEDIA_ROOT + upload_to
             with open((save_folder), 'wb+') as f:
                 for chunk in self.image.chunks():
@@ -102,7 +110,8 @@ class RobotControllerUpdate(UpdateView):
         return super(RobotControllerUpdate, self).form_valid(form)
 
 
-class RobotControllerDelete(DeleteView):
+class RobotControllerDelete(LoginRequiredMixin, DeleteView):
+    login_url = 'login'
     model = RobotController
     template_name = 'database/base_d_form.html'
 
@@ -113,7 +122,8 @@ class RobotControllerDelete(DeleteView):
         return self.model._meta.verbose_name
 
 
-class RobotControllerList(ListView):
+class RobotControllerList(LoginRequiredMixin, ListView):
+    login_url = 'login'
     model = RobotController
 
     def model_name(self):

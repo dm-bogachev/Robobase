@@ -2,6 +2,7 @@ from django.db import models
 from simple_history.models import HistoricalRecords
 from django.urls import reverse_lazy
 from django.views.generic import *
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class Integrator(models.Model):
@@ -35,7 +36,8 @@ class Integrator(models.Model):
         verbose_name = 'Интеграторы'
 
 
-class IntegratorCreate(CreateView):
+class IntegratorCreate(LoginRequiredMixin, CreateView):
+    login_url = 'login'
     model = Integrator
     template_name = 'database/base_cu_form.html'
     fields = '__all__'
@@ -47,14 +49,16 @@ class IntegratorCreate(CreateView):
         return self.model._meta.verbose_name
 
 
-class IntegratorRead(DetailView):
+class IntegratorRead(LoginRequiredMixin, DetailView):
+    login_url = 'login'
     model = Integrator
 
     def model_name(self):
         return self.model._meta.verbose_name
 
 
-class IntegratorUpdate(UpdateView):
+class IntegratorUpdate(LoginRequiredMixin, UpdateView):
+    login_url = 'login'
     model = Integrator
     template_name = 'database/base_cu_form.html'
     fields = '__all__'
@@ -66,7 +70,8 @@ class IntegratorUpdate(UpdateView):
         return self.model._meta.verbose_name
 
 
-class IntegratorDelete(DeleteView):
+class IntegratorDelete(LoginRequiredMixin, DeleteView):
+    login_url = 'login'
     model = Integrator
     template_name = 'database/base_d_form.html'
 
@@ -77,7 +82,8 @@ class IntegratorDelete(DeleteView):
         return self.model._meta.verbose_name
 
 
-class IntegratorList(ListView):
+class IntegratorList(LoginRequiredMixin, ListView):
+    login_url = 'login'
     model = Integrator
 
     def model_name(self):

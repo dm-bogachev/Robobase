@@ -3,6 +3,7 @@ from django.db import models
 from simple_history.models import HistoricalRecords
 from django.urls import reverse_lazy
 from django.views.generic import *
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class Client(models.Model):
@@ -37,7 +38,8 @@ class Client(models.Model):
         verbose_name = 'Клиент'
 
 
-class ClientCreate(CreateView):
+class ClientCreate(LoginRequiredMixin, CreateView):
+    login_url = 'login'
     model = Client
     template_name = 'database/base_cu_form.html'
     fields = '__all__'
@@ -49,14 +51,16 @@ class ClientCreate(CreateView):
         return self.model._meta.verbose_name
 
 
-class ClientRead(DetailView):
+class ClientRead(LoginRequiredMixin, DetailView):
+    login_url = 'login'
     model = Client
 
     def model_name(self):
         return self.model._meta.verbose_name
 
 
-class ClientUpdate(UpdateView):
+class ClientUpdate(LoginRequiredMixin, UpdateView):
+    login_url = 'login'
     model = Client
     template_name = 'database/base_cu_form.html'
     fields = '__all__'
@@ -68,7 +72,8 @@ class ClientUpdate(UpdateView):
         return self.model._meta.verbose_name
 
 
-class ClientDelete(DeleteView):
+class ClientDelete(LoginRequiredMixin, DeleteView):
+    login_url = 'login'
     model = Client
     template_name = 'database/base_d_form.html'
 
@@ -79,7 +84,8 @@ class ClientDelete(DeleteView):
         return self.model._meta.verbose_name
 
 
-class ClientList(ListView):
+class ClientList(LoginRequiredMixin, ListView):
+    login_url = 'login'
     model = Client
 
     def model_name(self):
