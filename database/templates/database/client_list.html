@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Список клиентов{% endblock title %}
 {% block content %}
-<div class="container">
-    <h1>Список клиентов | <a href="{% url 'client_create' %}">Добавить</a></h1>
-    <table id="info-table" class="table table-robot-list table-sort">
-        <thead class="thead-default">
-            <tr>
+<script src="{% static 'database/tablesFilter.js' %}"></script>
+<div class="container-fluid">
+    <h1>Список клиентов | Всего клиентов: {{ object_list|length }} | <a href="{% url 'client_create' %}">Добавить</a></h1>
+    <input type="text" class="form-control" id="filterInput" onkeyup="tablesFilter()"
+        placeholder="Фильтр по всем столбцам">
+    <table id="filteredTable" class="table">
+        <thead>
+            <tr class="header">
                 <th>#id</th>
                 <th>Название</th>
                 <th></th>
@@ -14,12 +18,12 @@
         <tbody>
             {% for object in object_list %}
             <tr>
-                <th style="width: 0; white-space: nowrap;">{{ object.pk }}</th>
-                <th>{{ object }}</a></th>
-                <th style="width: 0; white-space: nowrap;">
+                <td style="width: 0; white-space: nowrap;">{{ object.pk }}</td>
+                <td>{{ object }}</a></td>
+                <td style="width: 0; white-space: nowrap;">
                     <a href="{% url 'client_update' object.pk %}">Редактировать</a> |
                     <a href="{% url 'client_delete' object.pk %}">Удалить</a>
-                </th>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

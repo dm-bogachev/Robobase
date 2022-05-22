@@ -1,25 +1,31 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Список контроллеров{% endblock title %}
 {% block content %}
-<div class="container">
-    <h1>Список контроллеров | <a href="{% url 'robotcontroller_create' %}">Добавить</a></h1>
-    <table id="info-table" class="table table-robot-list table-sort">
-        <thead class="thead-default">
-            <tr>
-                <th>#id</th>
-                <th>Название</th>
-                <th></th>
-            </tr>
-        </thead>
+<script src="{% static 'database/tablesFilter.js' %}"></script>
+<div class="container-fluid">
+    <h1>Список контроллеров | Всего контроллеров: {{ object_list|length }} | <a href="{% url 'robotcontroller_create' %}">Добавить</a></h1>
+    <input type="text" class="form-control" id="filterInput" onkeyup="tablesFilter()"
+        placeholder="Фильтр по всем столбцам">
+    <table id="filteredTable" class="table">
+        <thead>
+            <tr class="header">
+                <thead class="header thead-default">
+                    <tr>
+                        <th>#id</th>
+                        <th>Название</th>
+                        <th></th>
+                    </tr>
+                </thead>
         <tbody>
             {% for object in object_list %}
             <tr>
-                <th style="width: 0; white-space: nowrap;">{{ object.pk }}</th>
-                <th>{{ object }}</a></th>
-                <th style="width: 0; white-space: nowrap;">
+                <td style="width: 0; white-space: nowrap;">{{ object.pk }}</td>
+                <td>{{ object }}</a></td>
+                <td style="width: 0; white-space: nowrap;">
                     <a href="{% url 'robotcontroller_update' object.pk %}">Редактировать</a> |
                     <a href="{% url 'robotcontroller_delete' object.pk %}">Удалить</a>
-                </th>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

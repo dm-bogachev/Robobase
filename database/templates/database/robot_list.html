@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Список роботов{% endblock title %}
 {% block content %}
+<script src="{% static 'database/tablesFilter.js' %}"></script>
 <div class="container-fluid">
-    <h1>Список роботов | <a href="{% url 'robot_create' %}">Добавить</a></h1>
-    <table id="info-table" class="table table-robot-list table-sort">
-        <thead class="thead-default">
-            <tr>
+    <h1>Список роботов | Всего роботов: {{ object_list|length }} | <a href="{% url 'robot_create' %}">Добавить</a></h1>
+    <input type="text" class="form-control" id="filterInput" onkeyup="tablesFilter()"
+        placeholder="Фильтр по всем столбцам">
+    <table id="filteredTable" class="table">
+        <thead>
+            <tr class="header">
                 <th>Имя</th>
                 <th>Серийный номер робота</th>
                 <th>Модель</th>
@@ -18,23 +22,24 @@
         <tbody>
             {% for robot in object_list %}
             <tr>
-                <th><a href="#">{{ robot.name }}</a></th>
-                <th>{{ robot.arm_sn }}</th>
-                <th>{{ robot.arm }}</th>
-                <th>{{ robot.controller }}</th>
-                <th>{{ robot.client }}</th>
-                <th>
+                <td><a href="#">{{ robot.name }}</a></td>
+                <td>{{ robot.arm_sn }}</td>
+                <td>{{ robot.arm }}</td>
+                <td>{{ robot.controller }}</td>
+                <td>{{ robot.client }}</td>
+                <td>
                     {% if robot.integrator != None %}
                     {{ robot.integrator }}
                     {% endif %}
-                </th>
-                <th>
+                </td>
+                <td>
                     <a href="#">Редактировать</a> |
                     <a href="#">Удалить</a>
-                </th>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
+
 {% endblock content %}
