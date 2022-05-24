@@ -1,6 +1,8 @@
 import os
 
 from database.models.robot import Robot
+from django.conf import settings
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import models
 from django.urls import reverse_lazy
 from django.views.generic import *
@@ -53,3 +55,16 @@ class RobotFile(models.Model):
     class Meta:
         verbose_name_plural = 'Файлы робота'
         verbose_name = 'Файл робота'
+
+
+class RobotFileCreate(LoginRequiredMixin, CreateView):
+    login_url = 'login'
+    model = RobotFile
+    template_name = 'database/base_cu_form.html'
+    fields = '__all__'
+
+    def get_success_url(self):
+        return reverse_lazy('robot_read', kwargs={'pk': self.kwargs['pk']})
+
+    def model_name(self):
+        return self.model._meta.verbose_name

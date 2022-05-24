@@ -19,8 +19,12 @@ class RobotArm(models.Model):
         return os.path.join('arm_images',
                             '_'.join(fname),)
 
+    vendor = models.ForeignKey('RobotVendor',
+                               on_delete=models.SET_DEFAULT,
+                               verbose_name='Производитель',
+                               default=1,)  # default = 'Kawasaki'
+
     name = models.CharField(max_length=32,
-                            unique=True,
                             verbose_name='Модель',
                             db_index=True,)
 
@@ -34,11 +38,12 @@ class RobotArm(models.Model):
                                   db_index=True,)
 
     def __str__(self):
-        return self.name
+        return str(self.vendor) + '/' + self.name
 
     class Meta:
         verbose_name_plural = 'Модели'
         verbose_name = 'Модель'
+        unique_together = ('vendor', 'name',)
 
 
 class RobotArmCreate(LoginRequiredMixin, CreateView):

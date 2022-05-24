@@ -19,8 +19,12 @@ class RobotController(models.Model):
         return os.path.join('controller_images',
                             '_'.join(fname),)
 
+    vendor = models.ForeignKey('RobotVendor',
+                               on_delete=models.SET_DEFAULT,
+                               verbose_name='Производитель',
+                               default=1,)  # default = 'Kawasaki'
+
     name = models.CharField(max_length=32,
-                            unique=True,
                             verbose_name='Контроллер',
                             db_index=True,)
 
@@ -33,11 +37,12 @@ class RobotController(models.Model):
                                   db_index=True,)
 
     def __str__(self):
-        return self.name
+        return str(self.vendor) + '/' + self.name
 
     class Meta:
         verbose_name_plural = 'Контроллеры'
         verbose_name = 'Контроллер'
+        unique_together = ('vendor', 'name',)
 
 
 class RobotControllerCreate(LoginRequiredMixin, CreateView):

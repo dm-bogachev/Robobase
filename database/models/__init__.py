@@ -6,3 +6,5 @@ from .robot import *
 from .robotarm import *
 from .robotcontroller import *
 from .robotfile import *
+from .robotservice import *
+from .robotvendor import *

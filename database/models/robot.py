@@ -12,6 +12,20 @@ class Robot(models.Model):
     # Historical records default model
     history = HistoricalRecords()
 
+    TYPES = (
+        ('kawasaki', 'Kawasaki'),
+        ('kuka', 'KUKA'),
+        ('fanuc', 'Fanuc'),
+        ('abb', 'ABB'),
+        ('yaskawa', 'Yaskawa'),
+        ('okura', 'OKURA'),
+        ('other', 'Другой'),)
+
+    # type = models.CharField(max_length=255,
+    #                         choices=TYPES,
+    #                         verbose_name='Производитель',
+    #                         default="kawasaki",)
+
     name = models.CharField(max_length=255,
                             unique=True,
                             verbose_name='Имя',
