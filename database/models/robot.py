@@ -99,7 +99,7 @@ class RobotUpdate(LoginRequiredMixin, UpdateView):
     fields = '__all__'
 
     def get_success_url(self):
-        return reverse_lazy('robot_list')
+        return reverse_lazy('robot_read', kwargs={'pk': self.kwargs['pk']})
 
     def model_name(self):
         return self.model._meta.verbose_name

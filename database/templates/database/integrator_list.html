@@ -3,7 +3,7 @@
 {% block title %}Список интеграторов{% endblock title %}
 {% block content %}
 <script src="{% static 'database/tablesFilter.js' %}"></script>
-<div class="container-fluid">
+<div class="container">
     <h1>Список интеграторов | Всего интеграторов: {{ object_list|length }} | <a href="{% url 'integrator_create' %}">Добавить</a></h1>
     <input type="text" class="form-control" id="filterInput" onkeyup="tablesFilter()"
         placeholder="Фильтр по всем столбцам">
@@ -19,7 +19,7 @@
             {% for object in object_list %}
             <tr>
                 <td style="width: 0; white-space: nowrap;">{{ object.pk }}</td>
-                <td>{{ object }}</a></td>
+                <td >{{ object }}</a></td>
                 <td style="width: 0; white-space: nowrap;">
                     <a href="{% url 'integrator_update' object.pk %}">Редактировать</a> |
                     <a href="{% url 'integrator_delete' object.pk %}">Удалить</a>
