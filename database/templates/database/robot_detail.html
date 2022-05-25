@@ -3,8 +3,9 @@
 {% block title %}{{ object }}{% endblock title %}
 {% block content %}
 <div class="container">
-    <h1>Информация о роботе</h1>
-    <a href="{% url 'robot_update' object.pk %}" class="btn btn-success" role="button">Редактировать</a>
+    <h1>Информация о роботе <a href="{% url 'robot_update' object.pk %}" class="btn btn-success"
+            role="button">Редактировать</a></h1>
+
     <div class="row">
         <div class="col-lg-12">
             <table class="table">
@@ -15,21 +16,87 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td><b>Имя робота</b></td><td>{{ object.name }}</td></tr>
-                    <tr><td><b>Описание</b></td><td>{{ object.description }}</td></tr>
-                    <tr><td><b>Модель</b></td><td>{{ object.arm }}</td></tr>
-                    <tr><td><b>Серийный номер робота</b></td><td>{{ object.arm_sn }}</td></tr>
-                    <tr><td><b>Контроллер</b></td><td>{{ object.controller }}</td></tr>
-                    <tr><td><b>Серийный номер контроллера</b></td><td>{{ object.controller_sn }}</td></tr>
-                    <tr><td><b>Клиент</b></td><td>{{ object.client }}</td></tr>
-                    <tr><td><b>Интегратор</b></td><td>{{ object.integrator }}</td></tr>
-                    <tr><td><b>Дата поставки</b></td><td>{{ object.shipping_date }}</td></tr>               
+                    <tr>
+                        <td><b>Имя робота</b></td>
+                        <td>{{ object.name }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Описание</b></td>
+                        <td>{{ object.description }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Модель</b></td>
+                        <td>{{ object.arm }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Серийный номер робота</b></td>
+                        <td>{{ object.arm_sn }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Контроллер</b></td>
+                        <td>{{ object.controller }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Серийный номер контроллера</b></td>
+                        <td>{{ object.controller_sn }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Клиент</b></td>
+                        <td>{{ object.client }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Интегратор</b></td>
+                        <td>{{ object.integrator }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Дата поставки</b></td>
+                        <td>{{ object.shipping_date }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <h1>Файлы</h1> 
-    <a href="#" class="btn btn-success" role="button">Добавить</a>
 
+    <div class="row">
+        <div class="col-lg-4">
+            <h1>Файлы <a href="{% url 'robotfile_create' object.pk %}" class="btn btn-success"
+                    role="button">Добавить</a></h1>
+
+            {% for file in object.robotfile_set.all %}
+            <div class="card">
+                <div class="card-header">
+                    <span class="font-weight-bold">Загружено: {{ file.upload_date }}</span>
+                </div>
+                <div class="card-body">
+                    <div>Название: {{ file.display_name }}</div>
+                    <div>Тип файла: {{ file.get_type_display }}</div>
+                </div>
+                <div class="card-footer text-center text-muted">
+                    <a href="{% url 'home' %}media/{{ file.file }}">Скачать</a> | <a
+                        href="{% url 'robotfile_delete' file.pk %}">Удалить</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-lg-8">
+            <h1>Обслуживания <a href="{% url 'robotservice_create' object.pk %}" class="btn btn-success"
+                    role="button">Добавить</a></h1>
+            {% for service in object.robotservice_set.all %}
+            <div class="card">
+                <div class="card-header">
+                    <span class="font-weight-bold">{{ service.date }}</span> &middot;
+                    <span class="text-muted"> {{ service.days_from_service }}</span>
+                </div>
+                <div class="card-body">
+                    <div>Описание:</div>
+                    <div>{{ service.description}}</div>
+                </div>
+                <div class="card-footer text-center text-muted">
+                    <a href="{% url 'robotservice_delete' service.pk %}">Удалить</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 {% endblock content %}

@@ -60,4 +60,14 @@ urlpatterns = [
          RobotControllerDelete.as_view(), name='robotcontroller_delete'),
     path('robotcontroller/list', RobotControllerList.as_view(),
          name='robotcontroller_list'),
+    # RobotFile
+    path('robotfile/create/<int:pk>', RobotFileCreate.as_view(),
+         name='robotfile_create'),
+    path('robotfile/delete/<int:pk>', RobotFileDelete.as_view(),
+         name='robotfile_delete'),
+    # RobotService
+    path('robotservice/create/<int:pk>', RobotServiceCreate.as_view(),
+         name='robotservice_create'),
+    path('robotservice/delete/<int:pk>', RobotServiceDelete.as_view(),
+         name='robotservice_delete'),
 ]

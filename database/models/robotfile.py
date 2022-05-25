@@ -1,5 +1,6 @@
 import os
 
+from django.utils import timezone
 from database.models.robot import Robot
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -45,6 +46,9 @@ class RobotFile(models.Model):
                             choices=TYPES,
                             verbose_name='Тип файла',)
 
+    upload_date = models.DateField(auto_now=True,
+                                   verbose_name='Дата создания',)
+
     robot = models.ForeignKey(to='Robot',
                               on_delete=models.CASCADE,
                               verbose_name='Относится к роботу',)
@@ -61,10 +65,31 @@ class RobotFileCreate(LoginRequiredMixin, CreateView):
     login_url = 'login'
     model = RobotFile
     template_name = 'database/base_cu_form.html'
-    fields = '__all__'
+    fields = ['display_name', 'file', 'type']
+
+    def form_valid(self, form):
+        pk = self.kwargs.get('pk', None)
+        robot = Robot.objects.get(pk=pk)
+        form.instance.robot = robot
+        form.save()
+        return super(RobotFileCreate, self).form_valid(form)
 
     def get_success_url(self):
         return reverse_lazy('robot_read', kwargs={'pk': self.kwargs['pk']})
+
+    def model_name(self):
+        return self.model._meta.verbose_name
+
+
+class RobotFileDelete(LoginRequiredMixin, DeleteView):
+    login_url = 'login'
+    model = RobotFile
+    template_name = 'database/base_d_form.html'
+    
+    def get_success_url(self):
+        pk = self.kwargs.get('pk', None)
+        robot = Robot.objects.get(robotfile=pk)
+        return reverse_lazy('robot_read', kwargs={'pk': robot.pk})
 
     def model_name(self):
         return self.model._meta.verbose_name
