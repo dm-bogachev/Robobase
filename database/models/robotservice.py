@@ -1,14 +1,8 @@
 import datetime
-import os
 
-from django.conf import settings
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import models
-from django.urls import reverse_lazy
 from django.views.generic import *
 from simple_history.models import HistoricalRecords
-
-from database.models.robot import Robot
 
 
 class RobotService(models.Model):
@@ -44,37 +38,3 @@ class RobotService(models.Model):
     class Meta:
         verbose_name_plural = 'Обслуживания робота'
         verbose_name = 'Обслуживание робота'
-
-
-class RobotServiceCreate(LoginRequiredMixin, CreateView):
-    login_url = 'login'
-    model = RobotService
-    template_name = 'database/base_cu_form.html'
-    fields = ['date', 'description']
-
-    def form_valid(self, form):
-        pk = self.kwargs.get('pk', None)
-        robot = Robot.objects.get(pk=pk)
-        form.instance.robot = robot
-        form.save()
-        return super(RobotServiceCreate, self).form_valid(form)
-
-    def get_success_url(self):
-        return reverse_lazy('robot_read', kwargs={'pk': self.kwargs['pk']})
-
-    def model_name(self):
-        return self.model._meta.verbose_name
-
-
-class RobotServiceDelete(LoginRequiredMixin, DeleteView):
-    login_url = 'login'
-    model = RobotService
-    template_name = 'database/base_d_form.html'
-
-    def get_success_url(self):
-        pk = self.kwargs.get('pk', None)
-        robot = Robot.objects.get(robotservice=pk)
-        return reverse_lazy('robot_read', kwargs={'pk': robot.pk})
-
-    def model_name(self):
-        return self.model._meta.verbose_name

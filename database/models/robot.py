@@ -1,9 +1,5 @@
-from django.utils.decorators import classonlymethod
-from typing import ItemsView
-
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.conf import settings
 from django.db import models
-from django.urls import reverse_lazy
 from django.views.generic import *
 from simple_history.models import HistoricalRecords
 
@@ -11,20 +7,6 @@ from simple_history.models import HistoricalRecords
 class Robot(models.Model):
     # Historical records default model
     history = HistoricalRecords()
-
-    TYPES = (
-        ('kawasaki', 'Kawasaki'),
-        ('kuka', 'KUKA'),
-        ('fanuc', 'Fanuc'),
-        ('abb', 'ABB'),
-        ('yaskawa', 'Yaskawa'),
-        ('okura', 'OKURA'),
-        ('other', 'Другой'),)
-
-    # type = models.CharField(max_length=255,
-    #                         choices=TYPES,
-    #                         verbose_name='Производитель',
-    #                         default="kawasaki",)
 
     name = models.CharField(max_length=255,
                             unique=True,
@@ -84,61 +66,14 @@ class Robot(models.Model):
                                  blank=True,
                                  null=True,)
 
+    added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                 on_delete=models.SET_DEFAULT,
+                                 verbose_name='Кем добавлен',
+                                 default=1,)
+
     def __str__(self):
         return self.name
 
     class Meta:
         verbose_name_plural = 'Роботы'
         verbose_name = 'Робот'
-
-
-class RobotCreate(LoginRequiredMixin, CreateView):
-    login_url = 'login'
-    model = Robot
-    fields = '__all__'
-
-    def get_success_url(self):
-        return reverse_lazy('robot_list')
-
-
-class RobotRead(LoginRequiredMixin, DetailView):
-    login_url = 'login'
-    model = Robot
-
-
-class RobotUpdate(LoginRequiredMixin, UpdateView):
-    login_url = 'login'
-    model = Robot
-    template_name = 'database/base_cu_form.html'
-    fields = '__all__'
-
-    def get_success_url(self):
-        return reverse_lazy('robot_read', kwargs={'pk': self.kwargs['pk']})
-
-    def model_name(self):
-        return self.model._meta.verbose_name
-
-
-class RobotDelete(LoginRequiredMixin, DeleteView):
-    login_url = 'login'
-    model = Robot
-    template_name = 'database/base_d_form.html'
-
-    def dispatch(self, request, *args, **kwargs):
-        pass
-        i = 0
-        return super().dispatch(request, *args, **kwargs)
-
-    def get_success_url(self):
-        return reverse_lazy('robot_list')
-
-    def model_name(self):
-        return self.model._meta.verbose_name
-
-
-class RobotList(LoginRequiredMixin, ListView):
-    login_url = 'login'
-    model = Robot
-
-    def model_name(self):
-        return self.model._meta.verbose_name

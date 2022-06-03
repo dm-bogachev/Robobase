@@ -1,9 +1,4 @@
-import os
-
-from django.conf import settings
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import models
-from django.urls import reverse_lazy
 from django.views.generic import *
 from simple_history.models import HistoricalRecords
 

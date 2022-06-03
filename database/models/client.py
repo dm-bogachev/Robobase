@@ -1,9 +1,6 @@
-from typing import ItemsView
 from django.db import models
-from simple_history.models import HistoricalRecords
-from django.urls import reverse_lazy
 from django.views.generic import *
-from django.contrib.auth.mixins import LoginRequiredMixin
+from simple_history.models import HistoricalRecords
 
 
 class Client(models.Model):
@@ -36,57 +33,3 @@ class Client(models.Model):
     class Meta:
         verbose_name_plural = 'Клиенты'
         verbose_name = 'Клиент'
-
-
-class ClientCreate(LoginRequiredMixin, CreateView):
-    login_url = 'login'
-    model = Client
-    template_name = 'database/base_cu_form.html'
-    fields = '__all__'
-
-    def get_success_url(self):
-        return reverse_lazy('client_list')
-
-    def model_name(self):
-        return self.model._meta.verbose_name
-
-
-class ClientRead(LoginRequiredMixin, DetailView):
-    login_url = 'login'
-    model = Client
-
-    def model_name(self):
-        return self.model._meta.verbose_name
-
-
-class ClientUpdate(LoginRequiredMixin, UpdateView):
-    login_url = 'login'
-    model = Client
-    template_name = 'database/base_cu_form.html'
-    fields = '__all__'
-
-    def get_success_url(self):
-        return reverse_lazy('client_list')
-
-    def model_name(self):
-        return self.model._meta.verbose_name
-
-
-class ClientDelete(LoginRequiredMixin, DeleteView):
-    login_url = 'login'
-    model = Client
-    template_name = 'database/base_d_form.html'
-
-    def get_success_url(self):
-        return reverse_lazy('client_list')
-
-    def model_name(self):
-        return self.model._meta.verbose_name
-
-
-class ClientList(LoginRequiredMixin, ListView):
-    login_url = 'login'
-    model = Client
-
-    def model_name(self):
-        return self.model._meta.verbose_name
