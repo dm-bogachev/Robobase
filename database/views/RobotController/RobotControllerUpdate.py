@@ -8,7 +8,7 @@ from django.views.generic import *
 class RobotControllerUpdate(LoginRequiredMixin, UpdateView):
     login_url = 'login'
     model = RobotController
-    template_name = 'database/base_cu_form.html'
+    template_name = 'database/RobotController/update.html'
     fields = '__all__'
 
     def get_success_url(self):

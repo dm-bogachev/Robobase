@@ -7,7 +7,7 @@ from django.views.generic import *
 class ClientUpdate(LoginRequiredMixin, UpdateView):
     login_url = 'login'
     model = Client
-    template_name = 'database/base_cu_form.html'
+    template_name = 'database/Client/update.html'
     fields = '__all__'
 
     def get_success_url(self):

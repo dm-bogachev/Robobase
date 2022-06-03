@@ -7,7 +7,7 @@ from django.views.generic import *
 class IntegratorUpdate(LoginRequiredMixin, UpdateView):
     login_url = 'login'
     model = Integrator
-    template_name = 'database/base_cu_form.html'
+    template_name = 'database/Integrator/update.html'
     fields = '__all__'
 
     def get_success_url(self):

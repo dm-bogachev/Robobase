@@ -8,6 +8,7 @@ class RobotCreate(LoginRequiredMixin, CreateView):
     login_url = 'login'
     model = Robot
     fields = '__all__'
+    template_name = 'database/Robot/create.html'
 
     def __init__(self):
         super(RobotCreate, self).__init__()

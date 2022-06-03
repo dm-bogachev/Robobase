@@ -8,7 +8,7 @@ from django.views.generic import *
 class RobotServiceDelete(LoginRequiredMixin, DeleteView):
     login_url = 'login'
     model = RobotService
-    template_name = 'database/base_d_form.html'
+    template_name = 'database/RobotService/delete.html'
 
     def get_success_url(self):
         pk = self.kwargs.get('pk', None)

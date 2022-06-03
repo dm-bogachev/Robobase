@@ -6,6 +6,7 @@ from django.views.generic import *
 class ClientList(LoginRequiredMixin, ListView):
     login_url = 'login'
     model = Client
+    template_name = 'database/Client/list.html'
 
     def get_queryset(self):
         qs = super().get_queryset()

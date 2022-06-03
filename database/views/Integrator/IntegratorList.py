@@ -6,6 +6,7 @@ from django.views.generic import *
 class IntegratorList(LoginRequiredMixin, ListView):
     login_url = 'login'
     model = Integrator
+    template_name = 'database/Integrator/list.html'
 
     def get_queryset(self):
         qs = super().get_queryset()

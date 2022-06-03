@@ -9,7 +9,7 @@ from django.views.generic import *
 class IntegratorDelete(LoginRequiredMixin, DeleteView):
     login_url = 'login'
     model = Integrator
-    template_name = 'database/base_d_form.html'
+    template_name = 'database/Integrator/delete.html'
 
     def form_valid(self, form):
         success_url = self.get_success_url()

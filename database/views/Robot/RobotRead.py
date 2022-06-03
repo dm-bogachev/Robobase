@@ -6,3 +6,4 @@ from django.views.generic import *
 class RobotRead(LoginRequiredMixin, DetailView):
     login_url = 'login'
     model = Robot
+    template_name = 'database/Robot/read.html'

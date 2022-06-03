@@ -7,7 +7,7 @@ from django.views.generic import *
 class LocationCreate(LoginRequiredMixin, CreateView):
     login_url = 'login'
     model = Location
-    template_name = 'database/base_cu_form.html'
+    template_name = 'database/Location/create.html'
     fields = '__all__'
 
     def get_success_url(self):

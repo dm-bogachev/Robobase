@@ -6,6 +6,7 @@ from django.views.generic import *
 class RobotControllerList(LoginRequiredMixin, ListView):
     login_url = 'login'
     model = RobotController
+    template_name = 'database/RobotController/list.html'
 
     def get_queryset(self):
         qs = super().get_queryset()

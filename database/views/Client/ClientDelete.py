@@ -9,7 +9,7 @@ from django.views.generic import *
 class ClientDelete(LoginRequiredMixin, DeleteView):
     login_url = 'login'
     model = Client
-    template_name = 'database/base_d_form.html'
+    template_name = 'database/Client/delete.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

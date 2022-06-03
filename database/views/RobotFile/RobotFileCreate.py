@@ -8,7 +8,7 @@ from django.views.generic import *
 class RobotFileCreate(LoginRequiredMixin, CreateView):
     login_url = 'login'
     model = RobotFile
-    template_name = 'database/base_cu_form.html'
+    template_name = 'database/RobotFile/create.html'
     fields = ['display_name', 'file', 'type']
 
     def form_valid(self, form):

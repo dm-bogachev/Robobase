@@ -4,7 +4,8 @@
 {% block content %}
 <script src="{% static 'database/tablesFilter.js' %}"></script>
 <div class="container">
-    <h1>Список клиентов | Всего клиентов: {{ object_list|length }} | <a href="{% url 'client_create' %}">Добавить</a></h1>
+    <h1>Список клиентов | Всего клиентов: {{ object_list|length }} | <a href="{% url 'client_create' %}">Добавить</a>
+    </h1>
     <input type="text" class="form-control" id="filterInput" onkeyup="tablesFilter()"
         placeholder="Фильтр по всем столбцам">
     <table id="filteredTable" class="table">

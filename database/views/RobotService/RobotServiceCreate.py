@@ -8,7 +8,7 @@ from django.views.generic import *
 class RobotServiceCreate(LoginRequiredMixin, CreateView):
     login_url = 'login'
     model = RobotService
-    template_name = 'database/base_cu_form.html'
+    template_name = 'database/RobotService/create.html'
     fields = ['date', 'description']
 
     def form_valid(self, form):
