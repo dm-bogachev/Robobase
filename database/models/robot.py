@@ -61,10 +61,11 @@ class Robot(models.Model):
                                    default=1,)  # default = 'Неизвестно'
 
     location = models.ForeignKey('Location',
-                                 on_delete=models.SET_NULL,
+                                 on_delete=models.SET_DEFAULT,
                                  verbose_name='Текущее местоположение',
                                  blank=True,
-                                 null=True,)
+                                 null=True,
+                                 default=1,) # default = 'Неизвестно'
 
     added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
                                  on_delete=models.SET_DEFAULT,
@@ -73,6 +74,11 @@ class Robot(models.Model):
 
     def __str__(self):
         return self.name
+    
+    # def save(self, request, *args, **kwargs) -> None:
+    #     self.added_by = request.user
+    #     return super().save(*args, **kwargs)
+
 
     class Meta:
         verbose_name_plural = 'Роботы'

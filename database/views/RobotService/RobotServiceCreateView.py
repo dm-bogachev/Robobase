@@ -1,3 +1,4 @@
+from database.forms.RobotService import RobotServiceForm
 from database.models import RobotService
 from database.models.Robot import Robot
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -9,7 +10,8 @@ class RobotServiceCreate(LoginRequiredMixin, CreateView):
     login_url = 'login'
     model = RobotService
     template_name = 'database/RobotService/create.html'
-    fields = ['date', 'description']
+    form_class = RobotServiceForm
+    # fields = ['date', 'description']
 
     def form_valid(self, form):
         pk = self.kwargs.get('pk', None)

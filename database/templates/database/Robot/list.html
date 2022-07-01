@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}Список роботов{% endblock title %}
 {% block content %}
-<script src="{% static 'database/tablesFilter.js' %}"></script>
+<script src="{% static 'database/js/tablesFilter.js' %}"></script>
 <div class="container-fluid">
     <h1>Список роботов | Всего роботов: {{ object_list|length }} | <a href="{% url 'robot_create' %}">Добавить</a></h1>
     <input type="text" class="form-control" id="filterInput" onkeyup="tablesFilter()"
