@@ -9,5 +9,11 @@
         {{form|crispy}}
         <button class="btn btn-success" type="submit">Сохранить</button>
     </form>
+    <script>
+        $('#id_date').datetimepicker({
+            format: 'd.m.Y',
+            timepicker: false,
+        });
+    </script>
 </div>
 {% endblock content %}

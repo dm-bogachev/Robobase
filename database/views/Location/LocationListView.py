@@ -8,5 +8,10 @@ class LocationList(LoginRequiredMixin, ListView):
     model = Location
     template_name = 'database/Location/list.html'
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        qs = Location.objects.exclude(deleted=True)
+        return qs
+
     def model_name(self):
         return self.model._meta.verbose_name

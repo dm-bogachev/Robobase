@@ -17,7 +17,7 @@ class IntegratorDelete(LoginRequiredMixin, DeleteView):
         self.object.save()
         robots = Robot.objects.filter(client=self.object.pk)
         for robot in robots:
-            robot.client = Integrator.objects.get(name="Неизвестно")
+            robot.integrator = Integrator.objects.get(name="Неизвестно")
             robot.save()
         return HttpResponseRedirect(success_url)
 

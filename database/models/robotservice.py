@@ -19,6 +19,10 @@ class RobotService(models.Model):
                               on_delete=models.CASCADE,
                               verbose_name='Робот',)
 
+    deleted = models.BooleanField(default=False,
+                                  verbose_name='Удалённый',
+                                  db_index=True,)
+
     def __str__(self):
         return self.description
 

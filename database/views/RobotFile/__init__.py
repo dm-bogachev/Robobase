@@ -1,2 +1,2 @@
-from .RobotFileCreate import *
-from .RobotFileDelete import *
+from .RobotFileCreateView import *
+from .RobotFileDeleteView import *

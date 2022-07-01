@@ -10,4 +10,4 @@ class RobotServiceForm(ModelForm):
     class Meta:
         model = RobotService
         fields = '__all__'
-        exclude = ('robot',)
+        exclude = ('robot','deleted',)

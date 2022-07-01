@@ -1,2 +1,2 @@
-from .RobotServiceCreate import *
-from .RobotServiceDelete import *
+from .RobotServiceCreateView import *
+from .RobotServiceDeleteView import *

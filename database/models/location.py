@@ -14,6 +14,10 @@ class Location(models.Model):
                             unique=True,
                             verbose_name='Город',)
 
+    deleted = models.BooleanField(default=False,
+                                  verbose_name='Удалённый',
+                                  db_index=True,)
+
     def __str__(self):
         return self.country + "/" + self.city
 
