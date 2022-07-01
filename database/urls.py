@@ -1,4 +1,5 @@
 from django.urls import path
+
 from .views import *
 
 
@@ -28,6 +29,7 @@ urlpatterns = [
     path('location/list', LocationList.as_view(), name='location_list'),
     # Client
     path('client/create', ClientCreate.as_view(), name='client_create'),
+    path('client/create/popup', ClientCreatePopup.as_view(), name='client_create_popup'),
     path('client/read/<int:pk>', ClientRead.as_view(), name='client_read'),
     path('client/update/<int:pk>', ClientUpdate.as_view(), name='client_update'),
     path('client/delete/<int:pk>', ClientDelete.as_view(), name='client_delete'),

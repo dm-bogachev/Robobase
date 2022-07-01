@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-
+{% load static %}
 {% block title %}Робот{% endblock title %}
 
 {% block content %}
-    
+    <script src="{% static 'database/js/update.js' %}"></script>
     <style></style>
     <div class="container" style="max-width: 80%">
         <h2>Робот</h2>
@@ -13,6 +13,7 @@
             {{form|crispy}}
             <button class="btn btn-success" type="submit">Сохранить</button>
         </form>
+        <a href="{% url 'client_create_popup' %}" onclick="return showAddPopup(this);">Новый клиент</a>
         <script>
             $('#id_shipping_date').datetimepicker({
                 format: 'd.m.Y',
