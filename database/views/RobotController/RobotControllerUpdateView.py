@@ -1,3 +1,4 @@
+from database.forms.RobotController import RobotControllerCreateForm
 from database.models import RobotController
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -9,7 +10,7 @@ class RobotControllerUpdate(LoginRequiredMixin, UpdateView):
     login_url = 'login'
     model = RobotController
     template_name = 'database/RobotController/update.html'
-    fields = '__all__'
+    form_class = RobotControllerCreateForm
 
     def get_success_url(self):
         return reverse_lazy('robotcontroller_list')

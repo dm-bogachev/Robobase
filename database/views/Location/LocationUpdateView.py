@@ -1,3 +1,4 @@
+from database.forms.Location import LocationCreateForm
 from database.models.Location import Location
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
@@ -8,7 +9,8 @@ class LocationUpdate(LoginRequiredMixin, UpdateView):
     login_url = 'login'
     model = Location
     template_name = 'database/Location/update.html'
-    fields = '__all__'
+    form_class = LocationCreateForm
+
 
     def get_success_url(self):
         return reverse_lazy('location_list')

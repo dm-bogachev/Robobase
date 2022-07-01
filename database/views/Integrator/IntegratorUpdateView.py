@@ -1,3 +1,4 @@
+from database.forms.Integrator import IntegratorCreateForm
 from database.models.Integrator import Integrator
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
@@ -8,7 +9,7 @@ class IntegratorUpdate(LoginRequiredMixin, UpdateView):
     login_url = 'login'
     model = Integrator
     template_name = 'database/Integrator/update.html'
-    fields = '__all__'
+    form_class = IntegratorCreateForm
 
     def get_success_url(self):
         return reverse_lazy('integrator_list')

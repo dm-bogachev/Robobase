@@ -1,3 +1,4 @@
+from database.forms.RobotArm import RobotArmCreateForm
 from database.models import RobotArm
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -9,7 +10,7 @@ class RobotArmUpdate(LoginRequiredMixin, UpdateView):
     login_url = 'login'
     model = RobotArm
     template_name = 'database/RobotArm/update.html'
-    fields = '__all__'
+    form_class = RobotArmCreateForm
 
     def get_success_url(self):
         return reverse_lazy('robotarm_list')

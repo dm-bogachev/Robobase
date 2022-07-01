@@ -11,8 +11,6 @@ class RobotCreate(LoginRequiredMixin, CreateView):
     login_url = 'login'
     model = Robot
     form_class = RobotCreateForm
-    # fields = ('name', 'arm_sn', 'controller_sn', 'description', 'shipping_date',
-    #           'controller', 'arm', 'client', 'integrator', 'location')
 
     template_name = 'database/Robot/create.html'
 
