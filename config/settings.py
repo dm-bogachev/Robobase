@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default2': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'robowizard_database',
         'USER': 'robowizard',
@@ -92,7 +92,7 @@ DATABASES = {
         'HOST': 'localhost',  # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     },
-    'sqlite3': {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
