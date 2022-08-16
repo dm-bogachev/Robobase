@@ -19,7 +19,7 @@
             <div class="col">
                 {{ field|as_crispy_field }}
             </div>
-            {% if field.name == 'client' %}
+            <!-- {% if field.name == 'client' %}
             <div class="col-1" style="align-self: center;"><a href="{% url 'client_create_popup' %}"
                     onclick="return showAddPopup(this);">Добавить</a></div>
             {% elif field.name == 'integrator' %}
@@ -30,7 +30,7 @@
             <div class="col-1" style="align-self: center;">-------</div>
             {% elif field.name == 'location' %}
             <div class="col-1" style="align-self: center;">-------</div>
-            {% endif %}
+            {% endif %} -->
         </div>
 
         {% endfor %}
