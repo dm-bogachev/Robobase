@@ -1,5 +1,6 @@
 from django.urls import path
 
+
 from .views import *
 
 
@@ -21,6 +22,8 @@ urlpatterns = [
     path('robot/delete/<int:pk>', RobotDelete.as_view(), name='robot_delete'),
     # Location
     path('location/create', LocationCreate.as_view(), name='location_create'),
+    path('location/create/popup', LocationCreatePopup.as_view(),
+         name='location_create_popup'),
     path('location/read/<int:pk>', LocationRead.as_view(), name='location_read'),
     path('location/update/<int:pk>',
          LocationUpdate.as_view(), name='location_update'),
@@ -29,13 +32,16 @@ urlpatterns = [
     path('location/list', LocationList.as_view(), name='location_list'),
     # Client
     path('client/create', ClientCreate.as_view(), name='client_create'),
-    path('client/create/popup', ClientCreatePopup.as_view(), name='client_create_popup'),
+    path('client/create/popup', ClientCreatePopup.as_view(),
+         name='client_create_popup'),
     path('client/read/<int:pk>', ClientRead.as_view(), name='client_read'),
     path('client/update/<int:pk>', ClientUpdate.as_view(), name='client_update'),
     path('client/delete/<int:pk>', ClientDelete.as_view(), name='client_delete'),
     path('client/list', ClientList.as_view(), name='client_list'),
     # Integrator
     path('integrator/create', IntegratorCreate.as_view(), name='integrator_create'),
+    path('integrator/create/popup', IntegratorCreatePopup.as_view(),
+         name='integrator_create_popup'),
     path('integrator/read/<int:pk>',
          IntegratorRead.as_view(), name='integrator_read'),
     path('integrator/update/<int:pk>',
@@ -45,6 +51,8 @@ urlpatterns = [
     path('integrator/list', IntegratorList.as_view(), name='integrator_list'),
     # RobotArm
     path('robotarm/create', RobotArmCreate.as_view(), name='robotarm_create'),
+    path('robotarm/create/popup', RobotArmCreatePopup.as_view(),
+         name='robotarm_create_popup'),
     path('robotarm/read/<int:pk>', RobotArmRead.as_view(), name='robotarm_read'),
     path('robotarm/update/<int:pk>',
          RobotArmUpdate.as_view(), name='robotarm_update'),
@@ -54,6 +62,8 @@ urlpatterns = [
     # RobotController
     path('robotcontroller/create', RobotControllerCreate.as_view(),
          name='robotcontroller_create'),
+    path('robotcontroller/create/popup', RobotControllerCreatePopup.as_view(),
+         name='robotcontroller_create_popup'),
     path('robotcontroller/read/<int:pk>',
          RobotControllerRead.as_view(), name='robotcontroller_read'),
     path('robotcontroller/update/<int:pk>',

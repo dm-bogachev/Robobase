@@ -10,7 +10,7 @@ class ClientCreatePopup(LoginRequiredMixin, CreateView):
     login_url = 'login'
     model = Client
     template_name = 'database/Client/create.html'
-    form_class = ClientCreateForm
+    form_class = ClientCreateForm()
 
     def form_valid(self, form):
         instance = form.save()

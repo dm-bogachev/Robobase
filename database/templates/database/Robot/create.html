@@ -19,22 +19,30 @@
             <div class="col">
                 {{ field|as_crispy_field }}
             </div>
-            <!-- {% if field.name == 'client' %}
+            {% if field.name == 'client' %}
             <div class="col-1" style="align-self: center;"><a href="{% url 'client_create_popup' %}"
-                    onclick="return showAddPopup(this);">Добавить</a></div>
-            {% elif field.name == 'integrator' %}
-            <div class="col-1" style="align-self: center;">-------</div>
-            {% elif field.name == 'controller' %}
-            <div class="col-1" style="align-self: center;">-------</div>
-            {% elif field.name == 'arm' %}
-            <div class="col-1" style="align-self: center;">-------</div>
-            {% elif field.name == 'location' %}
-            <div class="col-1" style="align-self: center;">-------</div>
-            {% endif %} -->
+                onclick="return showAddPopup(this);">Добавить</a></div>
+            {% endif %}
+            {% if field.name == 'integrator' %}
+            <div class="col-1" style="align-self: center;"><a href="{% url 'integrator_create_popup' %}"
+                onclick="return showAddPopup(this);">Добавить</a></div>
+            {% endif %}
+            {% if field.name == 'controller' %}
+            <div class="col-1" style="align-self: center;"><a href="{% url 'robotcontroller_create_popup' %}"
+                onclick="return showAddPopup(this);">Добавить</a></div>
+            {% endif %}
+            {% if field.name == 'arm' %}
+            <div class="col-1" style="align-self: center;"><a href="{% url 'robotarm_create_popup' %}"
+                onclick="return showAddPopup(this);">Добавить</a></div>
+            {% endif %}
+            {% if field.name == 'location' %}
+            <div class="col-1" style="align-self: center;"><a href="{% url 'location_create_popup' %}"
+                onclick="return showAddPopup(this);">Добавить</a></div>
+            {% endif %}
         </div>
 
         {% endfor %}
-        <button class="btn btn-success" type="submit">Сохранить</button>
+        <button class="btn btn-success"  onclick=clearStorage()   type="submit">Сохранить</button>
     </form>
 
     <script>

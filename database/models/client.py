@@ -17,11 +17,11 @@ class Client(models.Model):
                                   db_index=True,)
 
     location = models.ForeignKey('Location',
-                                 on_delete=models.SET_DEFAULT,
+                                 on_delete=models.SET_NULL,
                                  verbose_name='Локация',
                                  blank=True,
-                                 null=True,
-                                 default=1,)
+                                 null=True,)
+                                 #default=1,) # default = Неизвестно
 
     information = models.TextField(verbose_name='Контактные данные',
                                    blank=True,
