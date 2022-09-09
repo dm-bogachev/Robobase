@@ -1,12 +1,14 @@
 from django.contrib import admin
+from simple_history.admin import SimpleHistoryAdmin
 from .models import *
 
-admin.site.register(Location)
-admin.site.register(Client)
-admin.site.register(Integrator)
-admin.site.register(RobotArm)
-admin.site.register(RobotController)
-admin.site.register(Robot)
-admin.site.register(RobotFile)
-admin.site.register(RobotVendor)
-admin.site.register(RobotService)
+admin.site.register(Location, SimpleHistoryAdmin)
+admin.site.register(Client, SimpleHistoryAdmin)
+admin.site.register(Integrator, SimpleHistoryAdmin)
+admin.site.register(RobotArm, SimpleHistoryAdmin)
+admin.site.register(RobotController, SimpleHistoryAdmin)
+admin.site.register(Robot, SimpleHistoryAdmin)
+admin.site.register(RobotFile, SimpleHistoryAdmin)
+admin.site.register(RobotVendor, SimpleHistoryAdmin)
+admin.site.register(RobotService, SimpleHistoryAdmin)
+
