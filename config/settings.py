@@ -96,7 +96,7 @@ else:
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'robobase',
             'USER': 'robowizard',
-            'PASSWORD': 'robowizard',
+            'PASSWORD': 'RoB_Db1_',
             'HOST': 'localhost',  # Or an IP Address that your DB is hosted on
             'PORT': '3306',
         },
@@ -160,5 +160,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = 'media/'
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
