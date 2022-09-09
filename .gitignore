@@ -4,3 +4,5 @@ media/*
 db.sqlite3
 error.log
 db.sqlite3
+static/*
+Robobase.sock

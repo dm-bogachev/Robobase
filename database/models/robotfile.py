@@ -13,8 +13,6 @@ class RobotFile(models.Model):
     TYPES = (
         ('photo', 'Фотография'),
         ('backup', 'Резервная копия'),
-        ('report', 'Oтчет по работам'),
-        ('check', 'Чек-лист'),
         ('other', 'Другое'),
         ('docs', 'Документы'),)
 
