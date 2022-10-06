@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}Список клиентов{% endblock title %}
 {% block content %}
-<script src="{% static 'database/tablesFilter.js' %}"></script>
+<script src="{% static 'database/js/tablesFilter.js' %}"></script>
 <div class="container">
     <h1>Список клиентов | Всего клиентов: {{ object_list|length }} | <a href="{% url 'client_create' %}">Добавить</a>
     </h1>

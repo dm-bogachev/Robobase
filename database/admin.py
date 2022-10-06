@@ -11,4 +11,5 @@ admin.site.register(Robot, SimpleHistoryAdmin)
 admin.site.register(RobotFile, SimpleHistoryAdmin)
 admin.site.register(RobotVendor, SimpleHistoryAdmin)
 admin.site.register(RobotService, SimpleHistoryAdmin)
+admin.site.register(RobotSeller, SimpleHistoryAdmin)
 

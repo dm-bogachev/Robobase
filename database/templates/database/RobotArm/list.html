@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}Список моделей{% endblock title %}
 {% block content %}
-<script src="{% static 'database/tablesFilter.js' %}"></script>
+<script src="{% static 'database/js/tablesFilter.js' %}"></script>
 <div class="container">
     <h1>Список моделей | Всего моделей: {{ object_list|length }} | <a href="{% url 'robotarm_create' %}">Добавить</a></h1>
     <input type="text" class="form-control" id="filterInput" onkeyup="tablesFilter()"

@@ -16,6 +16,8 @@
                 <th>Контроллер</th>
                 <th>Клиент</th>
                 <th>Интегратор</th>
+                <th>Поставщик</th>
+                <th>Местоположение</th>
                 <th></th>
             </tr>
         </thead>
@@ -32,6 +34,8 @@
                     {{ object.integrator }}
                     {% endif %}
                 </td>
+                <td>{{ object.seller }}</td>
+                <td>{{ object.location }}</td>
                 <td>
                     <a href="{% url 'robot_update' object.pk %}">Редактировать</a> |
                     <a href="{% url 'robot_delete' object.pk %}">Удалить</a>

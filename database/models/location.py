@@ -10,6 +10,11 @@ class Location(models.Model):
     country = models.CharField(max_length=255,
                                verbose_name='Страна',)
 
+    region = models.CharField(max_length=255,
+                               verbose_name='Регион',
+                               blank=True,
+                               null=True,)
+
     city = models.CharField(max_length=255,
                             unique=True,
                             verbose_name='Город',)
@@ -19,7 +24,10 @@ class Location(models.Model):
                                   db_index=True,)
 
     def __str__(self):
-        return self.country + "/" + self.city
+    	if self.region:
+        	return self.country + "/" self.region + "/" + self.city
+        else:
+        	return self.country + "/" + self.city
 
     class Meta:
         verbose_name_plural = 'Локации'
