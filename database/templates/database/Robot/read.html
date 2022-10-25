@@ -52,6 +52,10 @@
                         <td><b>Дата поставки</b></td>
                         <td>{{ object.shipping_date }}</td>
                     </tr>
+                    <tr>
+                        <td><b>Дата производства</b></td>
+                        <td>{{ object.manufactured_date }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -89,7 +93,7 @@
                 </div>
                 <div class="card-body">
                     <div>Описание:</div>
-                    <div>{{ service.description}}</div>
+                    <div>{{ service.description|linebreaks }}</div>
                 </div>
                 <div class="card-footer text-center text-muted">
                     <a href="{% url 'robotservice_delete' service.pk %}">Удалить</a>
