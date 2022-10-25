@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %}{{ object }}{% endblock title %}
 {% block content %}
+<link rel="stylesheet" href="{% static  'database/css/imagePopup.css' %}">
 <div class="container">
     <h1>Информация о роботе <a href="{% url 'robot_update' object.pk %}" class="btn btn-success"
             role="button">Редактировать</a></h1>
@@ -75,11 +76,11 @@
                 <div class="card-body">
                     {% if file.type == 'photo' %}
                     <div><img style='height: 50%; width: 50%; object-fit: contain'
-                            src="{% url 'home' %}media/{{ file.file }}" class="scale"></div>
+                            src="{% url 'home' %}media/{{ file.file }}" class="minimized"></div>
                     {% endif %}
                     {% if file.type == 'video' %}
                     <div><video style='height: 50%; width: 50%; object-fit: contain'
-                            src="{% url 'home' %}media/{{ file.file }}" controls></video></div>
+                            src="{% url 'home' %}media/{{ file.file }}" class="minimized-video"></video></div>
                     {% endif %}
 
 
@@ -115,11 +116,11 @@
                         <div class="card-body">
                             {% if file.type == 'photo' %}
                             <div><img style='height: 50%; width: 50%; object-fit: contain'
-                                    src="{% url 'home' %}media/{{ file.file }}" class="scale"></div>
+                                    src="{% url 'home' %}media/{{ file.file }}" class="minimized"></div>
                             {% endif %}
                             {% if file.type == 'video' %}
                             <div><video style='height: 50%; width: 50%; object-fit: contain'
-                                    src="{% url 'home' %}media/{{ file.file }}" controls></video></div>
+                                    src="{% url 'home' %}media/{{ file.file }}" class="minimized-video"></video></div>
                             {% endif %}
                             <div>Название: {{ file.display_name }}</div>
                             <div>Тип файла: {{ file.get_type_display }}</div>
@@ -141,4 +142,43 @@
     </div>
 </div>
 </div>
+<script>
+    $(function () {
+        $('.minimized').click(function (event) {
+            var i_path = $(this).attr('src');
+            $('body').append('<div id="overlay"></div><div id="magnify"><img src="' + i_path + '"><div id="close-popup"><i></i></div></div>');
+            $('#magnify').css({
+                left: ($(document).width() - $('#magnify').outerWidth()) / 2,
+                top: ($(window).height() - $('#magnify').outerHeight()) / 2
+            });
+            $('#overlay, #magnify').fadeIn('fast');
+        });
+
+        $('body').on('click', '#close-popup, #overlay', function (event) {
+            event.preventDefault();
+            $('#overlay, #magnify').fadeOut('fast', function () {
+                $('#close-popup, #magnify, #overlay').remove();
+            });
+        });
+    });
+    $(function () {
+        $('.minimized-video').click(function (event) {
+            var i_path = $(this).attr('src');
+            $('body').append('<div id="overlay"></div><div id="magnify"><video controls src="' + i_path + '"><div id="close-popup"><i></i></div></div>');
+            $('#magnify').css({
+                left: ($(document).width()/2) - $('#magnify').outerWidth(),
+                //top: ($(document).height() - $('#magnify').outerHeight())/2// upd: 24.10.2016
+                top: ($(window).height()/2) - $('#magnify').outerHeight()
+            });
+            $('#overlay, #magnify').fadeIn('fast');
+        });
+
+        $('body').on('click', '#close-popup, #overlay', function (event) {
+            event.preventDefault();
+            $('#overlay, #magnify').fadeOut('fast', function () {
+                $('#close-popup, #magnify, #overlay').remove();
+            });
+        });
+    });
+</script>
 {% endblock content %}

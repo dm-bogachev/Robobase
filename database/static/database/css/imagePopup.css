@@ -1,0 +1,44 @@
+/* картинка на странице */
+.minimized {
+    width: 300px;
+    cursor: pointer;
+    border: 1px solid #FFF;
+}
+
+.minimized:hover {
+    border: 1px solid yellow;
+}
+
+/* увеличенная картинка */
+#magnify {
+    display: none;
+    /* position: absolute; upd: 24.10.2016 */
+    position: fixed;
+    max-width: 600px;
+    height: auto;
+    z-index: 9999;
+}
+
+
+#magnify img {
+    width: 100%;
+}
+
+#magnify video {
+    width: 100%;
+}
+
+/* затемняющий фон */
+#overlay {
+    display: none;
+    background: #000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.5;
+    z-index: 9990;
+}
+
+
