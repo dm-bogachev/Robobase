@@ -9,7 +9,7 @@ class RobotFileCreate(LoginRequiredMixin, CreateView):
     login_url = 'login'
     model = RobotFile
     template_name = 'database/RobotFile/create.html'
-    fields = ['display_name', 'file', 'type']
+    fields = ['display_name', 'file', 'type', 'service']
 
     def form_valid(self, form):
         pk = self.kwargs.get('pk', None)
