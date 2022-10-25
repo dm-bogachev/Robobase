@@ -63,6 +63,12 @@ class Robot(models.Model):
     creation_date = models.DateField(auto_now=True,
                                      verbose_name='Дата создания',)
 
+    manufactured_date = models.DateField(auto_now=True,
+                                     verbose_name='Дата производства',
+                                     null=True,
+                                     blank=True,)
+
+
     deleted = models.BooleanField(default=False,
                                   verbose_name='Удалённый',
                                   db_index=True,)
