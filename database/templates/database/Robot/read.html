@@ -73,6 +73,16 @@
                     <span class="font-weight-bold">Загружено: {{ file.upload_date }}</span>
                 </div>
                 <div class="card-body">
+                    {% if file.type == 'photo' %}
+                    <div><img style='height: 50%; width: 50%; object-fit: contain'
+                            src="{% url 'home' %}media/{{ file.file }}" class="scale"></div>
+                    {% endif %}
+                    {% if file.type == 'video' %}
+                    <div><video style='height: 100%; width: 100%; object-fit: contain'
+                            src="{% url 'home' %}media/{{ file.file }}" controls></video></div>
+                    {% endif %}
+
+
                     <div>Название: {{ file.display_name }}</div>
                     <div>Тип файла: {{ file.get_type_display }}</div>
                 </div>
@@ -103,6 +113,14 @@
                             <span class="font-weight-bold">Загружено: {{ file.upload_date }}</span>
                         </div>
                         <div class="card-body">
+                            {% if file.type == 'photo' %}
+                            <div><img style='height: 50%; width: 50%; object-fit: contain'
+                                    src="{% url 'home' %}media/{{ file.file }}" class="scale"></div>
+                            {% endif %}
+                            {% if file.type == 'video' %}
+                            <div><video style='height: 100%; width: 100%; object-fit: contain'
+                                    src="{% url 'home' %}media/{{ file.file }}" controls></video></div>
+                            {% endif %}
                             <div>Название: {{ file.display_name }}</div>
                             <div>Тип файла: {{ file.get_type_display }}</div>
                         </div>
@@ -116,7 +134,7 @@
                 </div>
             </div>
             <div class="card-footer text-center text-muted">
-                <a href="{% url 'robotservice_delete' service.pk %}">Удалить</a>
+                <a href="{% url 'robotservice_delete' service.pk %}">Удалить обслуживание</a>
             </div>
         </div>
         {% endfor %}

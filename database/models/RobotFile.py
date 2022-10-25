@@ -11,7 +11,8 @@ class RobotFile(models.Model):
     history = HistoricalRecords()
 
     TYPES = (
-        ('photo', 'Фотография'),
+        ('photo', 'Фото'),
+        ('video', 'Видео'),
         ('backup', 'Резервная копия'),
         ('report', 'Oтчет по работам'),
         ('check', 'Чек-лист'),
