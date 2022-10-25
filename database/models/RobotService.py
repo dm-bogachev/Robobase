@@ -41,4 +41,4 @@ class RobotService(models.Model):
 
     class Meta:
         verbose_name_plural = 'Обслуживания робота'
-        verbose_name = 'Обслуживание робота'
+        verbose_name = 'Обслуживание робота' 

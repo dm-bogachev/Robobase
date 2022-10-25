@@ -20,4 +20,4 @@ class RobotVendor(models.Model):
 
     class Meta:
         verbose_name_plural = 'Производители'
-        verbose_name = 'Производитель'
+        verbose_name = 'Производитель' 

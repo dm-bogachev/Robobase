@@ -39,4 +39,4 @@ class RobotArm(models.Model):
     class Meta:
         verbose_name_plural = 'Модели'
         verbose_name = 'Модель'
-        unique_together = ('vendor', 'name',)
+        unique_together = ('vendor', 'name',) 

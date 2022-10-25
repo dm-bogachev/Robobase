@@ -20,4 +20,4 @@ class RobotSeller(models.Model):
 
     class Meta:
         verbose_name_plural = 'Поставщики'
-        verbose_name = 'Поставщик'
+        verbose_name = 'Поставщик' 

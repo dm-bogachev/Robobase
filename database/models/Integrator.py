@@ -3,12 +3,12 @@ from django.views.generic import *
 from simple_history.models import HistoricalRecords
 
 
-class Client(models.Model):
+class Integrator(models.Model):
     # Historical records default model
     history = HistoricalRecords()
 
     name = models.CharField(max_length=255,
-                            verbose_name="Клиент",
+                            verbose_name="Интегратор",
                             unique=True,
                             db_index=True,)
 
@@ -21,7 +21,6 @@ class Client(models.Model):
                                  verbose_name='Локация',
                                  blank=True,
                                  null=True,)
-                                 #default=1,) # default = Неизвестно
 
     information = models.TextField(verbose_name='Контактные данные',
                                    blank=True,
@@ -31,5 +30,5 @@ class Client(models.Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = 'Клиенты'
-        verbose_name = 'Клиент'
+        verbose_name_plural = 'Интеграторы'
+        verbose_name = 'Интеграторы' 

@@ -30,4 +30,4 @@ class Location(models.Model):
 
     class Meta:
         verbose_name_plural = 'Локации'
-        verbose_name = 'Локация'
+        verbose_name = 'Локация' 

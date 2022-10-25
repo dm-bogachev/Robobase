@@ -38,7 +38,7 @@ class RobotController(models.Model):
     class Meta:
         verbose_name_plural = 'Контроллеры'
         verbose_name = 'Контроллер'
-        unique_together = ('vendor', 'name',)
+        unique_together = ('vendor', 'name',) 
 
 
 
