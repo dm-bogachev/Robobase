@@ -6,8 +6,38 @@
     <h2>{{view.model_name}}</h2>
     <form enctype="multipart/form-data" method="post">
         {% csrf_token %}
-        {{form|crispy}}
+        <!-- {{form|crispy}} -->
+        {% for hidden_field in form.hidden_fields %}
+        {{ hidden_field }}
+        {% endfor %}
+        {% for field in form.visible_fields %}
+        <div class="row">
+            <div class="col">
+                {{ field|as_crispy_field }}
+            </div>
+
+        </div>
+        {% endfor %}
         <button class="btn btn-success" type="submit">Сохранить</button>
     </form>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var div_id_service = document.getElementById('div_id_service');
+        div_id_service.parentElement.style.visibility = 'hidden'
+        var id_type = document.getElementById('id_type');
+        id_type.onclick = function () {
+            console.log("sda");
+            var id_type = document.getElementById('id_type');
+            var value = id_type.options[id_type.selectedIndex].value;
+            var div_id_service = document.getElementById('div_id_service');
+            if (value != 'report' && value != 'check') {
+                div_id_service.parentElement.style.visibility = 'hidden'
+            } else {
+                div_id_service.parentElement.style.visibility = 'visible'
+            }
+            console.log(value);
+        }
+    });
+</script>
 {% endblock content %}

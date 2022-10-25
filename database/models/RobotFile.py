@@ -13,6 +13,8 @@ class RobotFile(models.Model):
     TYPES = (
         ('photo', 'Фотография'),
         ('backup', 'Резервная копия'),
+        ('report', 'Oтчет по работам'),
+        ('check', 'Чек-лист'),
         ('other', 'Другое'),
         ('docs', 'Документы'),)
 
@@ -51,7 +53,7 @@ class RobotFile(models.Model):
 
     service = models.ForeignKey(to='RobotService',
                                 on_delete=models.CASCADE,
-                                verbose_name='Относится к сервису',
+                                verbose_name='Относится к обслуживанию',
                                 blank=True,
                                 null=True,)
 

@@ -67,6 +67,7 @@
                     role="button">Добавить</a></h1>
 
             {% for file in object.robotfile_set.all reversed %}
+            {% if file.service == None %}
             <div class="card">
                 <div class="card-header">
                     <span class="font-weight-bold">Загружено: {{ file.upload_date }}</span>
@@ -80,6 +81,7 @@
                         href="{% url 'robotfile_delete' file.pk %}">Удалить</a>
                 </div>
             </div>
+            {% endif %}
             {% endfor %}
         </div>
         <div class="col-lg-8">
@@ -94,13 +96,31 @@
                 <div class="card-body">
                     <div>Описание:</div>
                     <div>{{ service.description|linebreaks }}</div>
-                </div>
-                <div class="card-footer text-center text-muted">
-                    <a href="{% url 'robotservice_delete' service.pk %}">Удалить</a>
+                    {% for file in object.robotfile_set.all reversed %}
+                    {% if file.service != None %}
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="font-weight-bold">Загружено: {{ file.upload_date }}</span>
+                        </div>
+                        <div class="card-body">
+                            <div>Название: {{ file.display_name }}</div>
+                            <div>Тип файла: {{ file.get_type_display }}</div>
+                        </div>
+                        <div class="card-footer text-center text-muted">
+                            <a href="{% url 'home' %}media/{{ file.file }}">Скачать</a> | <a
+                                href="{% url 'robotfile_delete' file.pk %}">Удалить</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
                 </div>
             </div>
-            {% endfor %}
+            <div class="card-footer text-center text-muted">
+                <a href="{% url 'robotservice_delete' service.pk %}">Удалить</a>
+            </div>
         </div>
+        {% endfor %}
     </div>
+</div>
 </div>
 {% endblock content %}

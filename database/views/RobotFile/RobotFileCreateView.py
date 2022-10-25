@@ -4,6 +4,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import *
 
+from database.models.RobotSeller import RobotSeller
+from database.models.RobotService import RobotService
+
 
 class RobotFileCreate(LoginRequiredMixin, CreateView):
     login_url = 'login'
@@ -14,9 +17,20 @@ class RobotFileCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         pk = self.kwargs.get('pk', None)
         robot = Robot.objects.get(pk=pk)
+        self.services = RobotService.objects.filter(robot=robot)
         form.instance.robot = robot
         form.save()
         return super(RobotFileCreate, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        #
+        pk = self.kwargs.get('pk', None)
+        robot = Robot.objects.get(pk=pk)
+        services = RobotService.objects.filter(robot=robot)
+        context['form'].fields['service'].queryset = services
+        #
+        return context
 
     def get_success_url(self):
         return reverse_lazy('robot_read', kwargs={'pk': self.kwargs['pk']})
