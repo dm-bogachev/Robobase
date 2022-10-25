@@ -78,7 +78,7 @@
                             src="{% url 'home' %}media/{{ file.file }}" class="scale"></div>
                     {% endif %}
                     {% if file.type == 'video' %}
-                    <div><video style='height: 100%; width: 100%; object-fit: contain'
+                    <div><video style='height: 50%; width: 50%; object-fit: contain'
                             src="{% url 'home' %}media/{{ file.file }}" controls></video></div>
                     {% endif %}
 
@@ -118,7 +118,7 @@
                                     src="{% url 'home' %}media/{{ file.file }}" class="scale"></div>
                             {% endif %}
                             {% if file.type == 'video' %}
-                            <div><video style='height: 100%; width: 100%; object-fit: contain'
+                            <div><video style='height: 50%; width: 50%; object-fit: contain'
                                     src="{% url 'home' %}media/{{ file.file }}" controls></video></div>
                             {% endif %}
                             <div>Название: {{ file.display_name }}</div>
