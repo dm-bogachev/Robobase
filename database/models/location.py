@@ -24,10 +24,9 @@ class Location(models.Model):
                                   db_index=True,)
 
     def __str__(self):
-    	if self.region:
-        	return self.country + "/" self.region + "/" + self.city
-        else:
-        	return self.country + "/" + self.city
+      if self.region:
+        return self.country + " / " + self.region + " / " + self.city
+      return self.country + " / " + self.city
 
     class Meta:
         verbose_name_plural = 'Локации'

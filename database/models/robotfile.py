@@ -49,6 +49,12 @@ class RobotFile(models.Model):
                               on_delete=models.CASCADE,
                               verbose_name='Относится к роботу',)
 
+    service = models.ForeignKey(to='RobotService',
+                                on_delete=models.CASCADE,
+                                verbose_name='Относится к сервису',
+                                blank=True,
+                                null=True,)
+
     def __str__(self):
         return self.display_name
 
