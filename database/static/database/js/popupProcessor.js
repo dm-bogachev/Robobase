@@ -31,9 +31,12 @@ function clearStorage() {
 
 function keepStorage() {
     document.querySelectorAll('textarea, input, select').forEach(function (e) {
-        if (e.name != "csrfmiddlewaretoken") {//e.value === '') { 
-            e.value = sessionStorage.getItem(e.name, e.value)
-            console.log("Restored: ", e.name, e.value)
+        
+        if (e.name != "csrfmiddlewaretoken" && e.value != '') {//e.value === '') { 
+            val = sessionStorage.getItem(e.name, e.value)
+            console.log(val)
+            console.log(e.value)
+            if (val != null) e.value = val;
         }
         e.addEventListener('input', function () {
             sessionStorage.setItem(e.name, e.value);
