@@ -3,7 +3,7 @@
 {% load static %}
 {% block title %}Робот{% endblock title %}
 {% block content %}
-<script src="{% static 'database/js/popupProcessor.js' %}"></script>
+<link rel="stylesheet" href="{% static  'database/css/chosen.css' %}">
 <div class="container" style="max-width: 80%">
     <h2>Робот</h2>
     <form method="post" autocomplete="off">
@@ -19,23 +19,24 @@
                 {{ field|as_crispy_field }}
             </div>
             {% if field.name == 'client' %}
-            <div class="col-1" style="align-self: center;"><a href="{% url 'client_create_popup' %}"
+            <div id="forparent" class="col-1" style="align-self: center;"><a href="{% url 'client_create_popup' %}"
                     onclick="return showAddPopup(this);">Добавить</a></div>
             {% endif %}
             {% if field.name == 'integrator' %}
-            <div class="col-1" style="align-self: center;"><a href="{% url 'integrator_create_popup' %}"
+            <div id="forparent" class="col-1" style="align-self: center;"><a href="{% url 'integrator_create_popup' %}"
                     onclick="return showAddPopup(this);">Добавить</a></div>
             {% endif %}
             {% if field.name == 'controller' %}
-            <div class="col-1" style="align-self: center;"><a href="{% url 'robotcontroller_create_popup' %}"
-                    onclick="return showAddPopup(this);">Добавить</a></div>
+            <div id="forparent" class="col-1" style="align-self: center;"><a
+                    href="{% url 'robotcontroller_create_popup' %}" onclick="return showAddPopup(this);">Добавить</a>
+            </div>
             {% endif %}
             {% if field.name == 'arm' %}
-            <div class="col-1" style="align-self: center;"><a href="{% url 'robotarm_create_popup' %}"
+            <div id="forparent" class="col-1" style="align-self: center;"><a href="{% url 'robotarm_create_popup' %}"
                     onclick="return showAddPopup(this);">Добавить</a></div>
             {% endif %}
             {% if field.name == 'location' %}
-            <div class="col-1" style="align-self: center;"><a href="{% url 'location_create_popup' %}"
+            <div id="forparent" class="col-1" style="align-self: center;"><a href="{% url 'location_create_popup' %}"
                     onclick="return showAddPopup(this);">Добавить</a></div>
             {% endif %}
         </div>
@@ -54,5 +55,54 @@
             timepicker: false,
         });
     </script>
+    <script src="{% static 'database/js/chosen.jquery.js' %}"></script>
+    <script src="{% static 'database/js/popupProcessor.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            var inputs = document.querySelectorAll('select');
+            console.log(inputs)
+            //console.log(document.getElementById("forparent"))
+            document.querySelectorAll('select').forEach(function (e) {
+                console.log(e)
+                e.classList.add("chosen-select", "form-select");
+                //e.classList.remove("select")
+            })
+            $(".chosen-select").chosen({no_results_text: "Ничего не найдено!  "})
+        });
+    </script>
+    <link rel="stylesheet" href="{% static  'database/css/chosen_custom.css' %}">
+    <!-- <style>
+        .chosen-container {
+            display: block;
+            width: auto !important;
+            padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+            -moz-padding-start: calc(0.75rem - 3px);
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #212529;
+            background-color: #fff;
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 16px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 0.375rem;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        .chosen-container-single .chosen-single {
+            display: contents;
+            overflow: hidden;
+            background-color: #fff;
+            color: #444;
+            text-decoration: none;
+            white-space: nowrap;
+            line-height: 24px;
+        }
+
+    </style> -->
 </div>
 {% endblock content %}
