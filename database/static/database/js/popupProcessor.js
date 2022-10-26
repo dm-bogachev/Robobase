@@ -1,11 +1,3 @@
-/*
-    Создаём новое окно при нажатии кнопки добавить
-    В окне добавления вызываем функцию closePopup
-    сохраняем данные, обновляем страницу
-    ??????
-    PROFIT
-*/
-
 function showAddPopup(triggeringLink) {
     var name = triggeringLink.id.replace(/^create_/, '');
     href = triggeringLink.href;
@@ -31,11 +23,9 @@ function clearStorage() {
 
 function keepStorage() {
     document.querySelectorAll('textarea, input, select').forEach(function (e) {
-        
         if (e.name != "csrfmiddlewaretoken" && e.value != '') {//e.value === '') { 
             val = sessionStorage.getItem(e.name, e.value)
-            console.log(val)
-            console.log(e.value)
+            console.log("Restored: ", e.name, val)
             if (val != null) e.value = val;
         }
         e.addEventListener('input', function () {
@@ -46,15 +36,34 @@ function keepStorage() {
             sessionStorage.setItem(e.name, e.value);
             console.log("Saved: ", e.name, e.value)
         })
-        e.addEventListener('select', function () {
-            sessionStorage.setItem(e.name, e.value);
-            console.log("Saved: ", e.name, e.value)
-        })
     })
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    console.log(document.querySelectorAll('textarea, input, select'))
     keepStorage()
 
+});
+
+$(document).ready(function () {
+    $('.form-select').select2({
+        language: "ru",
+        width: "100%",
+        theme: "bootstrap-5"
+      });
+
+    document.querySelectorAll('select').forEach(function (e) {
+        e.onchange = function () {
+            sessionStorage.setItem(e.name, e.value);
+            console.log("Saved: ", e.name, e.value)
+        }
+    })
+
+    $('#id_shipping_date').datetimepicker({
+        format: 'd.m.Y',
+        timepicker: false,
+    });
+    $('#id_manufactured_date').datetimepicker({
+        format: 'd.m.Y',
+        timepicker: false,
+    });
 });
