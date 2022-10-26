@@ -34,9 +34,9 @@ class RobotArm(models.Model):
                                   db_index=True,)
 
     def __str__(self):
-        return str(self.vendor) + '/' + self.name
+        return self.name + '/' + str(self.vendor)
 
     class Meta:
         verbose_name_plural = 'Модели'
         verbose_name = 'Модель'
-        unique_together = ('vendor', 'name',) 
+        unique_together = ('vendor', 'name',)

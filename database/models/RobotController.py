@@ -33,7 +33,7 @@ class RobotController(models.Model):
                                   db_index=True,)
 
     def __str__(self):
-        return str(self.vendor) + '/' + self.name
+        return  self.name + '/' + str(self.vendor)
 
     class Meta:
         verbose_name_plural = 'Контроллеры'
