@@ -15,7 +15,7 @@ function showAddPopup(triggeringLink) {
 }
 
 function closePopup(win, newID, newRepr, id) {
-    $(id).append('<option value=' + newID + ' selected >' + newRepr + '</option>')
+    //$(id).append('<option value=' + newID + ' selected >' + newRepr + '</option>')
     window.location.reload();
     win.close();
 }
@@ -29,12 +29,29 @@ function clearStorage() {
     sessionStorage.clear();
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+function keepStorage() {
     document.querySelectorAll('textarea, input, select').forEach(function (e) {
-        if (e.value === '') e.value = window.sessionStorage.getItem(e.name, e.value);
+        if (e.name != "csrfmiddlewaretoken") {//e.value === '') { 
+            e.value = sessionStorage.getItem(e.name, e.value)
+            console.log("Restored: ", e.name, e.value)
+        }
         e.addEventListener('input', function () {
-            window.sessionStorage.setItem(e.name, e.value);
+            sessionStorage.setItem(e.name, e.value);
+            console.log("Saved: ", e.name, e.value)
+        })
+        e.addEventListener('textarea', function () {
+            sessionStorage.setItem(e.name, e.value);
+            console.log("Saved: ", e.name, e.value)
+        })
+        e.addEventListener('select', function () {
+            sessionStorage.setItem(e.name, e.value);
+            console.log("Saved: ", e.name, e.value)
         })
     })
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    console.log(document.querySelectorAll('textarea, input, select'))
+    keepStorage()
 
 });

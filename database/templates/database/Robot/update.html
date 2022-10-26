@@ -21,32 +21,36 @@
             </div>
             {% if field.name == 'client' %}
             <div class="col-1" style="align-self: center;"><a href="{% url 'client_create_popup' %}"
-                onclick="return showAddPopup(this);">Добавить</a></div>
+                    onclick="return showAddPopup(this);">Добавить</a></div>
             {% endif %}
             {% if field.name == 'integrator' %}
             <div class="col-1" style="align-self: center;"><a href="{% url 'integrator_create_popup' %}"
-                onclick="return showAddPopup(this);">Добавить</a></div>
+                    onclick="return showAddPopup(this);">Добавить</a></div>
             {% endif %}
             {% if field.name == 'controller' %}
             <div class="col-1" style="align-self: center;"><a href="{% url 'robotcontroller_create_popup' %}"
-                onclick="return showAddPopup(this);">Добавить</a></div>
+                    onclick="return showAddPopup(this);">Добавить</a></div>
             {% endif %}
             {% if field.name == 'arm' %}
             <div class="col-1" style="align-self: center;"><a href="{% url 'robotarm_create_popup' %}"
-                onclick="return showAddPopup(this);">Добавить</a></div>
+                    onclick="return showAddPopup(this);">Добавить</a></div>
             {% endif %}
             {% if field.name == 'location' %}
             <div class="col-1" style="align-self: center;"><a href="{% url 'location_create_popup' %}"
-                onclick="return showAddPopup(this);">Добавить</a></div>
+                    onclick="return showAddPopup(this);">Добавить</a></div>
             {% endif %}
         </div>
 
         {% endfor %}
-        <button class="btn btn-success"  onclick=clearStorage()   type="submit">Сохранить</button>
+        <button class="btn btn-success" onclick=clearStorage() type="submit">Сохранить</button>
     </form>
 
     <script>
         $('#id_shipping_date').datetimepicker({
+            format: 'd.m.Y',
+            timepicker: false,
+        });
+        $('#id_manufactured_date').datetimepicker({
             format: 'd.m.Y',
             timepicker: false,
         });
