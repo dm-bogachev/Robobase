@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{% static  'database/css/imagePopup.css' %}">
 <div class="container">
     <h1>Информация о роботе <a href="{% url 'robot_update' object.pk %}" class="btn btn-success"
-            role="button">Редактировать</a></h1>
+            role="button" onclick=sessionStorage.clear();>Редактировать</a></h1>
 
     <div class="row">
         <div class="col-lg-12">

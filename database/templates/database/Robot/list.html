@@ -4,7 +4,7 @@
 {% block content %}
 <script src="{% static 'database/js/tablesFilter.js' %}"></script>
 <div class="container-fluid">
-    <h1>Список роботов | Всего роботов: {{ object_list|length }} | <a href="{% url 'robot_create' %}">Добавить</a></h1>
+    <h1>Список роботов | Всего роботов: {{ object_list|length }} | <a onclick=sessionStorage.clear() href="{% url 'robot_create' %}">Добавить</a></h1>
     <input type="text" class="form-control" id="filterInput" onkeyup="tablesFilter()"
         placeholder="Фильтр по всем столбцам">
     <table id="filteredTable" class="table">
@@ -41,7 +41,7 @@
                 <td style="display: none;">{{ object.added_by }}</td>
                 <td style="display: none;">{{ object.manufactured_date }}</td>
                 <td>
-                    <a href="{% url 'robot_update' object.pk %}">Редактировать</a> |
+                    <a onclick=sessionStorage.clear() href="{% url 'robot_update' object.pk %}">Редактировать</a> |
                     <a href="{% url 'robot_delete' object.pk %}">Удалить</a>
                 </td>
             </tr>
