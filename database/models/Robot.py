@@ -63,7 +63,7 @@ class Robot(models.Model):
     creation_date = models.DateField(auto_now=True,
                                      verbose_name='Дата создания',)
 
-    manufactured_date = models.DateField(auto_now=True,
+    manufactured_date = models.DateField(auto_now=False,
                                      verbose_name='Дата производства',
                                      null=True,
                                      blank=True,)

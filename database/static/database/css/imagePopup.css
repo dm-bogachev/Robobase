@@ -9,6 +9,16 @@
     border: 1px solid yellow;
 }
 
+.minimized-video {
+    width: 300px;
+    cursor: pointer;
+    border: 1px solid #FFF;
+}
+
+.minimized-video:hover {
+    border: 15px solid yellow;
+}
+
 /* увеличенная картинка */
 #magnify {
     display: none;
