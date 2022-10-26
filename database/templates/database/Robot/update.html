@@ -3,7 +3,8 @@
 {% load static %}
 {% block title %}Робот{% endblock title %}
 {% block content %}
-<link rel="stylesheet" href="{% static  'database/css/chosen.css' %}">
+<script src="{% static 'database/js/popupProcessor.js' %}"></script>
+<style></style>
 <div class="container" style="max-width: 80%">
     <h2>Робот</h2>
     <form method="post" autocomplete="off">
@@ -19,24 +20,23 @@
                 {{ field|as_crispy_field }}
             </div>
             {% if field.name == 'client' %}
-            <div id="forparent" class="col-1" style="align-self: center;"><a href="{% url 'client_create_popup' %}"
+            <div class="col-1" style="align-self: center;"><a href="{% url 'client_create_popup' %}"
                     onclick="return showAddPopup(this);">Добавить</a></div>
             {% endif %}
             {% if field.name == 'integrator' %}
-            <div id="forparent" class="col-1" style="align-self: center;"><a href="{% url 'integrator_create_popup' %}"
+            <div class="col-1" style="align-self: center;"><a href="{% url 'integrator_create_popup' %}"
                     onclick="return showAddPopup(this);">Добавить</a></div>
             {% endif %}
             {% if field.name == 'controller' %}
-            <div id="forparent" class="col-1" style="align-self: center;"><a
-                    href="{% url 'robotcontroller_create_popup' %}" onclick="return showAddPopup(this);">Добавить</a>
-            </div>
+            <div class="col-1" style="align-self: center;"><a href="{% url 'robotcontroller_create_popup' %}"
+                    onclick="return showAddPopup(this);">Добавить</a></div>
             {% endif %}
             {% if field.name == 'arm' %}
-            <div id="forparent" class="col-1" style="align-self: center;"><a href="{% url 'robotarm_create_popup' %}"
+            <div class="col-1" style="align-self: center;"><a href="{% url 'robotarm_create_popup' %}"
                     onclick="return showAddPopup(this);">Добавить</a></div>
             {% endif %}
             {% if field.name == 'location' %}
-            <div id="forparent" class="col-1" style="align-self: center;"><a href="{% url 'location_create_popup' %}"
+            <div class="col-1" style="align-self: center;"><a href="{% url 'location_create_popup' %}"
                     onclick="return showAddPopup(this);">Добавить</a></div>
             {% endif %}
         </div>
@@ -55,21 +55,7 @@
             timepicker: false,
         });
     </script>
-    <script src="{% static 'database/js/chosen.jquery.js' %}"></script>
-    <script src="{% static 'database/js/popupProcessor.js' %}"></script>
-    <script>
-        $(document).ready(function () {
-            var inputs = document.querySelectorAll('select');
-            console.log(inputs)
-            //console.log(document.getElementById("forparent"))
-            document.querySelectorAll('select').forEach(function (e) {
-                console.log(e)
-                e.classList.add("chosen-select", "form-select");
-                //e.classList.remove("select")
-            })
-            $(".chosen-select").chosen({no_results_text: "Ничего не найдено!  "})
-        });
-    </script>
-    <link rel="stylesheet" href="{% static  'database/css/chosen_custom.css' %}">
 </div>
+
+
 {% endblock content %}
