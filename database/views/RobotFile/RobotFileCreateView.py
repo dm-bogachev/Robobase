@@ -17,7 +17,9 @@ class RobotFileCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         pk = self.kwargs.get('pk', None)
         robot = Robot.objects.get(pk=pk)
-        self.services = RobotService.objects.filter(robot=robot)
+        #
+
+        #self.services = RobotService.objects.filter(robot=robot)
         form.instance.robot = robot
         form.save()
         return super(RobotFileCreate, self).form_valid(form)
@@ -37,3 +39,12 @@ class RobotFileCreate(LoginRequiredMixin, CreateView):
 
     def model_name(self):
         return self.model._meta.verbose_name
+
+
+        # ('photo', 'Фото'),
+        # ('video', 'Видео'),
+        # ('backup', 'Резервная копия'),
+        # ('report', 'Oтчет по работам'),
+        # ('check', 'Чек-лист'),
+        # ('other', 'Другое'),
+        # ('docs', 'Документы'),)

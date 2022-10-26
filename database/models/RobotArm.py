@@ -24,7 +24,7 @@ class RobotArm(models.Model):
                             verbose_name='Модель',
                             db_index=True,)
 
-    image = models.ImageField(upload_to=get_file_path,
+    image = models.FileField(upload_to=get_file_path,
                               verbose_name='Изображение',
                               null=True,
                               blank=True,)

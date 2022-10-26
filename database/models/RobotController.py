@@ -24,7 +24,7 @@ class RobotController(models.Model):
                             verbose_name='Контроллер',
                             db_index=True,)
 
-    image = models.ImageField(upload_to=get_file_path,
+    image = models.FileField(upload_to=get_file_path,
                               null=True,
                               blank=True,)
 
@@ -33,19 +33,9 @@ class RobotController(models.Model):
                                   db_index=True,)
 
     def __str__(self):
-        return  self.name + '/' + str(self.vendor)
+        return self.name + '/' + str(self.vendor)
 
     class Meta:
         verbose_name_plural = 'Контроллеры'
         verbose_name = 'Контроллер'
-        unique_together = ('vendor', 'name',) 
-
-
-
-
-
-
-
-
-
-
+        unique_together = ('vendor', 'name',)
