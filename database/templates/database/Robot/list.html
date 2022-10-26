@@ -18,6 +18,8 @@
                 <th>Интегратор</th>
                 <th>Поставщик</th>
                 <th>Местоположение</th>
+                <th style="display: none;">Added by</th>
+                <th style="display: none;">MFD</th>
                 <th></th>
             </tr>
         </thead>
@@ -36,6 +38,8 @@
                 </td>
                 <td>{{ object.seller }}</td>
                 <td>{{ object.location }}</td>
+                <td style="display: none;">{{ object.added_by }}</td>
+                <td style="display: none;">{{ object.manufactured_date }}</td>
                 <td>
                     <a href="{% url 'robot_update' object.pk %}">Редактировать</a> |
                     <a href="{% url 'robot_delete' object.pk %}">Удалить</a>
