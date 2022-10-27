@@ -46,9 +46,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 $(document).ready(function () {
     $('.form-select').select2({
-        language: "ru",
         width: "100%",
-        theme: "bootstrap-5"
+        theme: "bootstrap-5",
       });
 
     document.querySelectorAll('select').forEach(function (e) {
