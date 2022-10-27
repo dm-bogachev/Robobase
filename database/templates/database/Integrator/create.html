@@ -3,7 +3,10 @@
 {% block title %}{{view.model_name}}{% endblock title %}
 {% block content %}
 {% load static %}
-<script src="{% static 'robots/js/update.js' %}"></script>
+<script src="{% static 'database/js/select2.min.js' %}"></script>
+<script src="{% static 'database/js/popupProcessor.js' %}"></script>
+<link rel="stylesheet" href="{% static  'database/css/select2.min.css' %}">
+<link rel="stylesheet" href="{% static  'database/css/select2-bootstrap-5-theme.rtl.min.css' %}">
 <div class="container" style="max-width: 80%">
     <h2>{{view.model_name}}</h2>
     <form enctype="multipart/form-data" method="post">
@@ -27,4 +30,13 @@
         <button onclick=clearStorage()  class="btn btn-success" type="submit">Сохранить</button>
     </form>
 </div>
+<script>
+    $(document).ready(function () {
+    $('.form-select').select2({
+        language: "ru",
+        width: "100%",
+        theme: "bootstrap-5"
+      });
+});
+</script>
 {% endblock content %}

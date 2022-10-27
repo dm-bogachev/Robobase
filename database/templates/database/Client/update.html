@@ -1,13 +1,42 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
 {% block title %}{{view.model_name}}{% endblock title %}
 {% block content %}
-    <div class="container" style="max-width: 80%">
-        <h2>{{view.model_name}}</h2>
-        <form  enctype="multipart/form-data" method="post">
-            {% csrf_token %}
-            {{form|crispy}}
-            <button class="btn btn-success" type="submit">Сохранить</button>
-        </form>
-    </div>
+<script src="{% static 'database/js/select2.min.js' %}"></script>
+<script src="{% static 'database/js/popupProcessor.js' %}"></script>
+<link rel="stylesheet" href="{% static  'database/css/select2.min.css' %}">
+<link rel="stylesheet" href="{% static  'database/css/select2-bootstrap-5-theme.rtl.min.css' %}">
+<div class="container" style="max-width: 80%">
+    <h2>{{view.model_name}}</h2>
+    <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <!-- {{form|crispy}} -->
+        {% for hidden_field in form.hidden_fields %}
+        {{ hidden_field }}
+        {% endfor %}
+        {% for field in form.visible_fields %}
+        <div class="row">
+            <div class="col">
+                {{ field|as_crispy_field }}
+            </div>
+            {% if field.name == 'location' %}
+            <div class="col-1" style="align-self: center;"><a href="{% url 'location_create_popup' %}"
+                onclick="return showAddPopup(this);">Добавить</a></div>
+            {% endif %}
+        </div>
+
+        {% endfor %}
+        <button  onclick=clearStorage()  class="btn btn-success" type="submit">Сохранить</button>
+    </form>
+</div>
+<script>
+    $(document).ready(function () {
+    $('.form-select').select2({
+        language: "ru",
+        width: "100%",
+        theme: "bootstrap-5"
+      });
+});
+</script>
 {% endblock content %}
