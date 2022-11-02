@@ -43,12 +43,16 @@ document.addEventListener("DOMContentLoaded", function () {
     keepStorage()
 
 });
-
+$(document).on('select2:open', () => {
+    document.querySelector('.select2-search__field').focus();
+});
 $(document).ready(function () {
     $('.form-select').select2({
         width: "100%",
         theme: "bootstrap-5",
-      });
+    });
+
+
 
     document.querySelectorAll('select').forEach(function (e) {
         e.onchange = function () {
