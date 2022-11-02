@@ -64,10 +64,14 @@ class Robot(models.Model):
                                      verbose_name='Дата создания',)
 
     manufactured_date = models.DateField(auto_now=False,
-                                     verbose_name='Дата производства',
-                                     null=True,
-                                     blank=True,)
+                                         verbose_name='Дата производства',
+                                         null=True,
+                                         blank=True,)
 
+    seller = models.ForeignKey('RobotSeller',
+                               on_delete=models.SET_DEFAULT,
+                               verbose_name='Поставщик',
+                               default=1,)
 
     deleted = models.BooleanField(default=False,
                                   verbose_name='Удалённый',
@@ -87,4 +91,4 @@ class Robot(models.Model):
 
     class Meta:
         verbose_name_plural = 'Роботы'
-        verbose_name = 'Робот' 
+        verbose_name = 'Робот'
