@@ -16,7 +16,7 @@ class Location(models.Model):
                                null=True,)
 
     city = models.CharField(max_length=255,
-                            unique=True,
+                            unique=False,
                             verbose_name='Город',)
 
     deleted = models.BooleanField(default=False,
