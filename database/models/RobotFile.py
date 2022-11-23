@@ -25,8 +25,7 @@ class RobotFile(models.Model):
         robot = Robot.objects.get(pk=instance.robot_id)
         folder = [str(instance.robot_id), robot.name,
                   robot.arm_sn, robot.controller_sn]
-        fname = [str(instance.display_name), str(
-            randint(0, maxsize)), filename]
+        fname = [str(randint(0, maxsize)), filename]
         return os.path.join('robots',
                             # Robot id + robot name + randint
                             '_'.join(folder),
@@ -36,7 +35,8 @@ class RobotFile(models.Model):
                             '_'.join(fname),)
 
     display_name = models.CharField(max_length=255,
-                                    verbose_name='Отображаемое имя',)
+                                    verbose_name='Отображаемое имя (по желанию)',
+                                    blank=True,)
 
     file = models.FileField(verbose_name='Файл',
                             upload_to=get_file_path,)

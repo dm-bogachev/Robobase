@@ -12,14 +12,29 @@ class RobotFileCreate(LoginRequiredMixin, CreateView):
     login_url = 'login'
     model = RobotFile
     template_name = 'database/RobotFile/create.html'
-    fields = ['display_name', 'file', 'type', 'service']
+    fields = ['file', 'display_name', 'service']
+
+    TYPES = {
+        'photo': ['png', 'jpg', 'jpeg'],
+        'video': ['avi', 'mp4', 'webm'],
+        'backup': ['pg', 'as', 'el', 'ol'],
+        'docs': ['pdf', 'docx', 'doc', 'xls'],
+    }
 
     def form_valid(self, form):
         pk = self.kwargs.get('pk', None)
         robot = Robot.objects.get(pk=pk)
-        #
-
-        #self.services = RobotService.objects.filter(robot=robot)
+        # Auto type set
+        type_set = False
+        import os.path
+        extension = os.path.splitext(form.instance.file.path)[1][1:]
+        for key in self.TYPES:
+            if (extension in self.TYPES[key]):
+                form.instance.type = key
+                type_set = True
+        if not type_set: form.instance.type = 'other'
+        if form.instance.display_name == '':
+            form.instance.display_name = form.instance.file.name
         form.instance.robot = robot
         form.save()
         return super(RobotFileCreate, self).form_valid(form)
