@@ -6,3 +6,4 @@ error.log
 db.sqlite3
 static/*
 Robobase.sock
+*.xlsx
