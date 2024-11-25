@@ -15,4 +15,4 @@ EXPOSE 8000
 # Run the application.
 #CMD ["mysqld", "--character-set-server=utf8", "--collation-server=utf8_unicode_ci"]
 
-CMD ["python", "-Xutf8", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "-Xutf8", "manage.py", "runserver", "0.0.0.0:80"]
