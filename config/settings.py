@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-if False:
+if True:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -95,10 +95,11 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'robobase',
-            'USER': 'robowizard',
+            'USER': 'root',
             'PASSWORD': 'RoB_Db1_',
-            'HOST': 'localhost',  # Or an IP Address that your DB is hosted on
+            'HOST': 'db',  # Or an IP Address that your DB is hosted on
             'PORT': '3306',
+            'OPTIONS': {'charset': 'utf8mb4'},
         },
     }
 
