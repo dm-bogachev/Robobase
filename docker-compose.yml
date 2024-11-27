@@ -1,19 +1,27 @@
 version: '3'
 
 services:
-  #db:
-  #  image: mysql:5.7
-  #  restart: always
-  #  environment:
-  #    MYSQL_ROOT_PASSWORD: RoB_Db1_
-  #    MYSQL_DATABASE: robobase
-  #  ports:
-  #    - "3306:3306"
-  #  volumes:
-  #    - mysql_data:/var/lib/mysql
-  #  command: mysqld --character-set-server=utf8 --collation-server=utf8_general_ci
+  db:
+    image: mysql:5.7
+    restart: always
+    container_name: rdb-mysql
+    environment:
+      #MYSQL_ROOT_HOST: %
+      MYSQL_DATABASE: robobase
+      MYSQL_USER: robowizard
+      MYSQL_PASSWORD: RoB_Ser1
+      MYSQL_ROOT_PASSWORD: RoB_Ser1
+      #MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3306:3306"
+    expose:
+     - 3306
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_general_ci
 
   web:
+    restart: always
     build: .
     container_name: rdb
     command: python manage.py runserver 0.0.0.0:80
@@ -21,8 +29,8 @@ services:
       - .:/app
     ports:
       - "80:80"
-    #depends_on:
-    #  - db
+    depends_on:
+      - db
 
 #volumes:
-#  mysql_data:
+  #mysql_data:

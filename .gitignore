@@ -1,3 +1,4 @@
+mysql_data/*
 *.pyc
 .vscode/*
 media/*
@@ -7,3 +8,6 @@ db.sqlite3
 static/*
 Robobase.sock
 *.xlsx
+*.sql
+*.zip
+
